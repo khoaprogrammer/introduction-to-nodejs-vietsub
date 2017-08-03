@@ -1,0 +1,20 @@
+1
+00:00:01,000 --> 00:00:07,000
+So in conclusion, in this module, we learned about creating child processes in Node
+
+2
+00:00:07,000 --> 00:00:15,000
+with the spawn, exec, execFile and fork functions of the child process module.
+
+3
+00:00:15,000 --> 00:00:20,000
+We then looked at scaling your application using Nodes experimental cluster module.
+
+4
+00:00:20,000 --> 00:00:26,000
+I hope this has been a helpful introduction to scaling your Node applications.
+
+5
+00:00:26,000 --> 00:59:00,000
+Thank you.
+

@@ -1,0 +1,236 @@
+1
+00:00:00,000 --> 00:00:06,000
+So far, we've looked at callbacks as a way to implement asynchronous non-blocking code.
+
+2
+00:00:06,000 --> 00:00:11,000
+Node provides another way to achieve this with Events.
+
+3
+00:00:11,000 --> 00:00:16,000
+Here is a callback example similar to what we've seen so far.
+
+4
+00:00:16,000 --> 00:00:21,000
+It's a function which invokes a callback with an array of results.
+
+5
+00:00:21,000 --> 00:00:25,000
+Here is a similar snippet of code written using Events.
+
+6
+00:00:25,000 --> 00:00:30,000
+In this case, the getThem function returns a value immediately.
+
+7
+00:00:30,000 --> 00:00:34,000
+The value is an instance of the EventEmmiter class.
+
+8
+00:00:34,000 --> 00:00:37,000
+This Results object has an On function.
+
+9
+00:00:37,000 --> 00:00:41,000
+Here we are specifying that for each item event,
+
+10
+00:00:41,000 --> 00:00:46,000
+execute this function passing in the current item.
+
+11
+00:00:46,000 --> 00:00:52,000
+Then, on the Done Event, or when there are no more results, invoke this function,
+
+12
+00:00:52,000 --> 00:00:59,000
+and if there is an error, invoke this function and pass in the error that occurred.
+
+13
+00:00:59,000 --> 00:01:05,000
+Some of the key differences between these two approaches are; in the Callback Model,
+
+14
+00:01:05,000 --> 00:01:10,000
+you make a request and provide a function to be called when the request is completed.
+
+15
+00:01:10,000 --> 00:01:12,000
+One request, one reply.
+
+16
+00:01:12,000 --> 00:01:17,000
+The Event Model, however, is more of a publish/subscribe approach.
+
+17
+00:01:17,000 --> 00:01:21,000
+You can invoke the On function repeatedly to provide multiple functions to invoke
+
+18
+00:01:21,000 --> 00:01:27,000
+on each event; in essence, subscribing to the events.
+
+19
+00:01:27,000 --> 00:01:33,000
+In the Callback approach, you don't receive any results until you receive all the results.
+
+20
+00:01:33,000 --> 00:01:38,000
+In the example above, the callback will not be invoked until the entire items array is ready.
+
+21
+00:01:38,000 --> 00:01:45,000
+If these items arrive slowly, the callback will not be invoked until the last item has arrived.
+
+22
+00:01:45,000 --> 00:01:49,000
+It also means that the getThem function will be storing the entire list of items
+
+23
+00:01:49,000 --> 00:01:55,000
+in memory while accumulating them prior to invoking the callback with the entire array.
+
+24
+00:01:55,000 --> 00:01:59,000
+On the other hand, in the evented example above, functions associated
+
+25
+00:01:59,000 --> 00:02:03,000
+with the item event will be invoked for each item.
+
+26
+00:02:03,000 --> 00:02:07,000
+This gives you the opportunity to act on the first item as soon as it arrives
+
+27
+00:02:07,000 --> 00:02:09,000
+and the second item and so forth.
+
+28
+00:02:09,000 --> 00:02:14,000
+It also means that the getThem function is not accumulating the items in memory.
+
+29
+00:02:14,000 --> 00:02:21,000
+Finally, the Callback scenario, if only by convention, is an all or nothing proposition.
+
+30
+00:02:21,000 --> 00:02:27,000
+While technically possible to invoke a callback with both error and items parameters,
+
+31
+00:02:27,000 --> 00:02:30,000
+this is not the convention and would not be expected.
+
+32
+00:02:30,000 --> 00:02:35,000
+If the error parameter is set, then the call is assumed to have failed.
+
+33
+00:02:35,000 --> 00:02:40,000
+In the evented scenario, however, an error is emitted as a separate event.
+
+34
+00:02:40,000 --> 00:02:46,000
+Notice that the item and done events do not pass in an error parameter as the first value.
+
+35
+00:02:46,000 --> 00:02:50,000
+In this evented approach, the error can be emitted instead of any item events
+
+36
+00:02:50,000 --> 00:02:54,000
+or after some item events have already been omitted.
+
+37
+00:02:54,000 --> 00:02:59,000
+This access to partial results may be desirable in some situations.
+
+38
+00:02:59,000 --> 00:03:04,000
+The EventEmitter Class is provided by Node as a construct
+
+39
+00:03:04,000 --> 00:03:07,000
+for building these event-driven interfaces.
+
+40
+00:03:07,000 --> 00:03:12,000
+The code that is subscribing to events, like the code in our last slide,
+
+41
+00:03:12,000 --> 00:03:15,000
+will call the On function of the EventEmitter instance
+
+42
+00:03:15,000 --> 00:03:19,000
+and specify the event being subscribed to.
+
+43
+00:03:19,000 --> 00:03:22,000
+And then the code publishing events will call the Emit function
+
+44
+00:03:22,000 --> 00:03:26,000
+and specify the event being emitted.
+
+45
+00:03:26,000 --> 00:03:30,000
+Now these events themselves are simply strings and can be of any value.
+
+46
+00:03:30,000 --> 00:03:36,000
+In our previous example, we defined three events; item, done, and error.
+
+47
+00:03:36,000 --> 00:03:42,000
+When emitting an event, you can also provide additional arguments after the event name.
+
+48
+00:03:42,000 --> 00:03:47,000
+These will pass as parameters to any functions subscribed to that event.
+
+49
+00:03:47,000 --> 00:03:52,000
+In our previous example, this included the item itself that was passed to the item event,
+
+50
+00:03:52,000 --> 00:03:57,000
+as well as, the error object passed to the error event.
+
+51
+00:03:57,000 --> 00:04:02,000
+This set of events and their arguments constitute an interface, or contract,
+
+52
+00:04:02,000 --> 00:04:06,000
+between the subscriber and the publisher, or emitter.
+
+53
+00:04:06,000 --> 00:04:12,000
+There are two common patterns I've seen for using EventEmitters in Node.
+
+54
+00:04:12,000 --> 00:04:15,000
+The first is as a return value from a function.
+
+55
+00:04:15,000 --> 00:04:18,000
+This is what we saw on the earlier slide.
+
+56
+00:04:18,000 --> 00:04:25,000
+In this case, an instance of EventEmitter is created directly and returned from a function.
+
+57
+00:04:25,000 --> 00:04:28,000
+Another common pattern is when an object extends EventEmitter
+
+58
+00:04:28,000 --> 00:04:33,000
+and emits events while also providing other functions and values.
+
+59
+00:04:33,000 --> 00:59:00,000
+Let's take a look at an example of both of these EventEmitter patterns.
+

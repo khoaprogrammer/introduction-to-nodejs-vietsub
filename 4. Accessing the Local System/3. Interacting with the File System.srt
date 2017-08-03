@@ -1,0 +1,52 @@
+1
+00:00:00,000 --> 00:00:06,000
+Interacting with the file system in Node is done via the built in fs module.
+
+2
+00:00:06,000 --> 00:00:12,000
+Many of the functions provided by this module are wrappers around the POSIX functions.
+
+3
+00:00:12,000 --> 00:00:16,000
+They come in both asynchronous and synchronous flavors.
+
+4
+00:00:16,000 --> 00:00:19,000
+This is the one area of the Node standard library
+
+5
+00:00:19,000 --> 00:00:23,000
+where you will see a significant collection of synchronous functions.
+
+6
+00:00:23,000 --> 00:00:28,000
+The fs module also provides a couple of stream oriented functions;
+
+7
+00:00:28,000 --> 00:00:34,000
+create ReadSream opens a file for reading and returns a readable stream,
+
+8
+00:00:34,000 --> 00:00:39,000
+create WriteStream opens a file for writing and returns a writable stream.
+
+9
+00:00:39,000 --> 00:00:46,000
+These are useful for integrating with other streams as we did in our last module.
+
+10
+00:00:46,000 --> 00:00:50,000
+Lastly, the fs module provides a watch function
+
+11
+00:00:50,000 --> 00:00:53,000
+which will watch a file or directory for changes.
+
+12
+00:00:53,000 --> 00:00:59,000
+The function returns and event emitter which emits a change event whenever a file changes.
+
+13
+00:00:59,000 --> 00:59:00,000
+Let's take a look at interacting with a file system using the fs module (silence).
+

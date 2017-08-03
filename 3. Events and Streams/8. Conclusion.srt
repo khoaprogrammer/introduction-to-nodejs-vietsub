@@ -1,0 +1,36 @@
+1
+00:00:00,000 --> 00:00:06,000
+So, in conclusion, in this module we examined the differences between callbacks and events
+
+2
+00:00:06,000 --> 00:00:11,000
+for implementing non-blocking asynchronous code.
+
+3
+00:00:11,000 --> 00:00:16,000
+We then looked at the EventEmitter class and two common patterns for using it.
+
+4
+00:00:16,000 --> 00:00:20,000
+From there, we moved on to Readable and WriteableStreams including,
+
+5
+00:00:20,000 --> 00:00:23,000
+piping data from one to the other.
+
+6
+00:00:23,000 --> 00:00:27,000
+I hope this module has been helpful in introducing you to the concepts
+
+7
+00:00:27,000 --> 00:00:30,000
+of EventEmitters and streams and their js.
+
+8
+00:00:30,000 --> 00:00:31,000
+Thank you.
+
+9
+00:00:31,000 --> 00:59:00,000
+( Silence )
+

@@ -1,0 +1,372 @@
+1
+00:00:00,000 --> 00:00:04,000
+We'll start our cluster example from the top.
+
+2
+00:00:04,000 --> 00:00:10,000
+We'll begin by requiring the cluster module, as well as requiring the HTTP module
+
+3
+00:00:10,000 --> 00:00:14,000
+because what we're going to be building is a clustered web server.
+
+4
+00:00:14,000 --> 00:00:17,000
+And we've defined a variable here called numWorkers equals 2.
+
+5
+00:00:17,000 --> 00:00:22,000
+This is how many worker processes we're going to spawn.
+
+6
+00:00:22,000 --> 00:00:27,000
+Now, if you remember from the slides, I mentioned the isMaster variable and being able
+
+7
+00:00:27,000 --> 00:00:32,000
+to structure your application by having a large if statement around the bulk
+
+8
+00:00:32,000 --> 00:00:35,000
+of your code, and that's what we've done here.
+
+9
+00:00:35,000 --> 00:00:41,000
+So, if this code is running on the master, it will execute this code.
+
+10
+00:00:41,000 --> 00:00:47,000
+However, if it's not, it will execute this code which means that's running on a worker process.
+
+11
+00:00:47,000 --> 00:00:52,000
+So, when you're setting up a cluster, there are ways that you can configure it
+
+12
+00:00:52,000 --> 00:00:57,000
+to run an entirely separate Node.js file for the worker processes.
+
+13
+00:00:57,000 --> 00:01:02,000
+But for a simple example like this, it's easier just to keep it all in one file.
+
+14
+00:01:02,000 --> 00:01:07,000
+So what we're going to do in the master is iterate over a for loop for the number
+
+15
+00:01:07,000 --> 00:01:11,000
+of workers and fork that many worker processes.
+
+16
+00:01:11,000 --> 00:01:15,000
+And we'll also log something to the console as well.
+
+17
+00:01:15,000 --> 00:01:22,000
+Now everything else in the master is listening for events that happen on the worker processes.
+
+18
+00:01:22,000 --> 00:01:26,000
+So here we're listening for the fork event and we will log that to the console.
+
+19
+00:01:26,000 --> 00:01:31,000
+And if you'll notice when the fork event is omitted, it's passed a reference
+
+20
+00:01:31,000 --> 00:01:33,000
+to the worker that omitted that event.
+
+21
+00:01:33,000 --> 00:01:38,000
+And the same is true here with online, the online event were passed to worker
+
+22
+00:01:38,000 --> 00:01:40,000
+and we'll log that to the console.
+
+23
+00:01:40,000 --> 00:01:42,000
+And then the listening event, the same way,
+
+24
+00:01:42,000 --> 00:01:45,000
+although we've logged a little bit of extra information here.
+
+25
+00:01:45,000 --> 00:01:54,000
+So, we've also logged the process ID which is available at worker.process.pid, and the address
+
+26
+00:01:54,000 --> 00:01:58,000
+and port that the listening process is listening on.
+
+27
+00:01:58,000 --> 00:02:05,000
+And then finally, when a worker process terminates, it will emit the exit event.
+
+28
+00:02:05,000 --> 00:02:10,000
+And so, we are listening for that as well and logging that data to the console.
+
+29
+00:02:10,000 --> 00:02:13,000
+So that's what the master process will be doing.
+
+30
+00:02:13,000 --> 00:02:17,000
+Let's scroll down and see what the child process will do.
+
+31
+00:02:17,000 --> 00:02:24,000
+So the child process first thing will log to the console that it is ready.
+
+32
+00:02:24,000 --> 00:02:26,000
+And we've established the count here and set it to zero.
+
+33
+00:02:26,000 --> 00:02:28,000
+We'll get to that in just a minute.
+
+34
+00:02:28,000 --> 00:02:33,000
+So here in the worker, this is a typical HTTP CreateServer function just
+
+35
+00:02:33,000 --> 00:02:35,000
+like we studied in a prior module.
+
+36
+00:02:35,000 --> 00:02:41,000
+And we're writing out an okay status code, and then we're sending back to the client,
+
+37
+00:02:41,000 --> 00:02:47,000
+"hello world from worker" and then we'll put the worker number, the process ID and the count.
+
+38
+00:02:47,000 --> 00:02:51,000
+And what the count is is that each time the server fulfills a request,
+
+39
+00:02:51,000 --> 00:02:53,000
+we're incrementing the count.
+
+40
+00:02:53,000 --> 00:02:59,000
+And then, once this particular worker has served three requests, it's going to destroy itself.
+
+41
+00:02:59,000 --> 00:03:03,000
+And this will be one way we can make sure that the operating system is taking care
+
+42
+00:03:03,000 --> 00:03:06,000
+of routing the requests to unavailable worker.
+
+43
+00:03:06,000 --> 00:03:09,000
+And we'll see that play out in just a minute.
+
+44
+00:03:09,000 --> 00:03:12,000
+And then with-- for the server that's returned, we're chaining the listen
+
+45
+00:03:12,000 --> 00:03:18,000
+and using our Cloud 9 process, ENV, PORT and IP parameters, and that's really about it.
+
+46
+00:03:18,000 --> 00:03:20,000
+So the worker is establishing a server,
+
+47
+00:03:20,000 --> 00:03:24,000
+answering up to three requests and then, terminating itself.
+
+48
+00:03:24,000 --> 00:03:28,000
+So before we run this, one of the things you'll want to be sure of is
+
+49
+00:03:28,000 --> 00:03:33,000
+that you're running in Node.js 0.8 and not 0.6.
+
+50
+00:03:33,000 --> 00:03:39,000
+So, if you come over here to the run and debug side bar, and be sure to choose Node 0.8.
+
+51
+00:03:39,000 --> 00:03:42,000
+Let's run this code.
+
+52
+00:03:42,000 --> 00:03:45,000
+So we had a fair amount printed to the output.
+
+53
+00:03:45,000 --> 00:03:47,000
+Let's take a look at that first.
+
+54
+00:03:47,000 --> 00:03:49,000
+So if you'll remember in our for loop
+
+55
+00:03:49,000 --> 00:03:52,000
+as we were forking each worker process, we logged this to the console.
+
+56
+00:03:52,000 --> 00:03:55,000
+So this was logged twice, once for each worker.
+
+57
+00:03:55,000 --> 00:03:59,000
+And then after that, the master began receiving events,
+
+58
+00:03:59,000 --> 00:04:02,000
+the fork event from the first worker, and then the second worker.
+
+59
+00:04:02,000 --> 00:04:06,000
+And next, the online event from the worker number one and then number two.
+
+60
+00:04:06,000 --> 00:04:10,000
+And then, in our worker code, we were explicitly printing
+
+61
+00:04:10,000 --> 00:04:13,000
+to the console worker and then the number ready.
+
+62
+00:04:13,000 --> 00:04:18,000
+So we printed that, and then the master received the listening event for the first worker,
+
+63
+00:04:18,000 --> 00:04:21,000
+and then, the listening event for the second worker.
+
+64
+00:04:21,000 --> 00:04:26,000
+Now we printed a little bit of extra information here just to really drive home the point
+
+65
+00:04:26,000 --> 00:04:32,000
+that these are two different processes at the operating system level, 76 and 77.
+
+66
+00:04:32,000 --> 00:04:35,000
+But they are both listening on the same IP and port number.
+
+67
+00:04:35,000 --> 00:04:39,000
+At this point, it's up to the operating system to decide
+
+68
+00:04:39,000 --> 00:04:42,000
+which process to route each request to.
+
+69
+00:04:42,000 --> 00:04:46,000
+So let's invoke a few requests against this web server and see what we get.
+
+70
+00:04:46,000 --> 00:04:51,000
+An easy way to execute discrete requests
+
+71
+00:04:51,000 --> 00:04:54,000
+against the web server is using the cURL command line tool.
+
+72
+00:04:54,000 --> 00:04:57,000
+And that's what we're going to do here.
+
+73
+00:04:57,000 --> 00:05:00,000
+CURL available for Linux, Mac and even Windows.
+
+74
+00:05:00,000 --> 00:05:05,000
+And the simplest use is the word cURL and the address you would like to request.
+
+75
+00:05:05,000 --> 00:05:10,000
+So we're going to do that here against our running web server in Cloud 9.
+
+76
+00:05:10,000 --> 00:05:11,000
+So let's run that.
+
+77
+00:05:11,000 --> 00:05:18,000
+So here you can see that the output from the web server is hello world from worker number 2 pid
+
+78
+00:05:18,000 --> 00:05:21,000
+and then the number and then the count.
+
+79
+00:05:21,000 --> 00:05:24,000
+So what this tells us is that worker number 2 answered this request
+
+80
+00:05:24,000 --> 00:05:26,000
+and it was his first request.
+
+81
+00:05:26,000 --> 00:05:31,000
+If you remember, each worker will only answer three requests before terminating itself.
+
+82
+00:05:31,000 --> 00:05:32,000
+So let's make another request.
+
+83
+00:05:32,000 --> 00:05:40,000
+Okay, this was still worker number 2 and it was his second request.
+
+84
+00:05:40,000 --> 00:05:43,000
+And worker number 2 a third time with his third request.
+
+85
+00:05:43,000 --> 00:05:46,000
+And if you look at the output, you'll notice that as we answer each request,
+
+86
+00:05:46,000 --> 00:05:50,000
+we were incrementing the count and logging that to the console.
+
+87
+00:05:50,000 --> 00:05:55,000
+And then, after the third request, the master received the exit event from the worker.
+
+88
+00:05:55,000 --> 00:05:59,000
+Let's keep making requests for this web server.
+
+89
+00:05:59,000 --> 00:06:06,000
+Now you'll notice worker number 1 has taken over handling request with a count of 1, 2, and 3.
+
+90
+00:06:06,000 --> 00:06:10,000
+And now if we go back to the output, you'll see the three requests handled
+
+91
+00:06:10,000 --> 00:06:13,000
+by worker number 1 and now he has exited as well.
+
+92
+00:06:13,000 --> 00:06:18,000
+This is a really good example of seeing how you can spot multiple Node processes
+
+93
+00:06:18,000 --> 00:59:00,000
+to do the same work and actually share server handles between worker processes.
+

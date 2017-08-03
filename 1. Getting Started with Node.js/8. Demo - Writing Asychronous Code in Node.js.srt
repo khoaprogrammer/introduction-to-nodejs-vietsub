@@ -1,0 +1,460 @@
+1
+00:00:00,000 --> 00:00:03,000
+Okay, so now we're going to take a look
+
+2
+00:00:03,000 --> 00:00:08,000
+at writing some asynchronous code for "Node.js" using call-backs.
+
+3
+00:00:08,000 --> 00:00:10,000
+To start, we're going to keep it simple.
+
+4
+00:00:10,000 --> 00:00:16,000
+For now, what I want to focus on is the function call and the call-back,
+
+5
+00:00:16,000 --> 00:00:19,000
+so what I have here is a function.
+
+6
+00:00:19,000 --> 00:00:23,000
+And the way that it works is it will double the number you pass in only
+
+7
+00:00:23,000 --> 00:00:25,000
+if the number you pass in is even.
+
+8
+00:00:25,000 --> 00:00:27,000
+If you pass it in as even, it will double it;
+
+9
+00:00:27,000 --> 00:00:29,000
+if you pass in an odd number, you're going to get an error.
+
+10
+00:00:29,000 --> 00:00:34,000
+And each call to "Even Doubler" is going to take a random amount of time,
+
+11
+00:00:34,000 --> 00:00:37,000
+some time less than one second but it's random each time.
+
+12
+00:00:37,000 --> 00:00:41,000
+If I want to invoke the function "Even Doubler", I can call it here.
+
+13
+00:00:41,000 --> 00:00:46,000
+I pass in the number that I want to double, and then the call-back
+
+14
+00:00:46,000 --> 00:00:49,000
+to receive the results when the call is done.
+
+15
+00:00:49,000 --> 00:00:53,000
+And this is where this random amount of time comes into play.
+
+16
+00:00:53,000 --> 00:00:56,000
+That's when "Handle Results" will be called.
+
+17
+00:00:56,000 --> 00:01:00,000
+And the function "Handle Results" takes three parameters.
+
+18
+00:01:00,000 --> 00:01:06,000
+Now when we looked at the slides, the convention that we looked at is that the first parameter
+
+19
+00:01:06,000 --> 00:01:10,000
+to the call-back is whether or not there was an error,
+
+20
+00:01:10,000 --> 00:01:12,000
+and you'll see here we have a variable called "ERR".
+
+21
+00:01:12,000 --> 00:01:16,000
+And after that, I mean, you can really have as many parameters as you want
+
+22
+00:01:16,000 --> 00:01:19,000
+in your call-back, and so in this case I have two.
+
+23
+00:01:19,000 --> 00:01:23,000
+One is I have the results, which will be the doubled number if there wasn't an error.
+
+24
+00:01:23,000 --> 00:01:29,000
+And then I have a third parameter, which is how long did it take this particular invocation
+
+25
+00:01:29,000 --> 00:01:31,000
+of "Even Doubler" to run?
+
+26
+00:01:31,000 --> 00:01:37,000
+Here we inspect "Error", and if we find an error, we log that to the console either way.
+
+27
+00:01:37,000 --> 00:01:40,000
+And then if there's not an error, we tell you what the results are
+
+28
+00:01:40,000 --> 00:01:42,000
+and then how long it took to calculate those results.
+
+29
+00:01:42,000 --> 00:01:47,000
+So if we invoke here for an even number, let's see what we get.
+
+30
+00:01:47,000 --> 00:01:52,000
+We'll run it.
+
+31
+00:01:52,000 --> 00:01:55,000
+We got our dashed line here; that printed first.
+
+32
+00:01:55,000 --> 00:01:59,000
+Even though we invoked the function first, the first thing to the console was our dashed line.
+
+33
+00:01:59,000 --> 00:02:04,000
+And that's because the invocation, it was going to take a certain amount of time to complete.
+
+34
+00:02:04,000 --> 00:02:10,000
+And while that was completing, "Node" went ahead and printed out to the console this dashed line.
+
+35
+00:02:10,000 --> 00:02:17,000
+And then, when "Even Doubler" was done doing its work, it called the "Handle Results" call-back,
+
+36
+00:02:17,000 --> 00:02:22,000
+which inspected the error value, and it was null in this case, which is what we would want to see
+
+37
+00:02:22,000 --> 00:02:25,000
+because this is indeed an even number.
+
+38
+00:02:25,000 --> 00:02:28,000
+And then it printed out to the console the fact
+
+39
+00:02:28,000 --> 00:02:34,000
+that the number 2 doubled is 4, and it took 604 milliseconds.
+
+40
+00:02:34,000 --> 00:02:36,000
+Now, like I said, that number is random.
+
+41
+00:02:36,000 --> 00:02:42,000
+If we run it again, you're going to get a different number.
+
+42
+00:02:42,000 --> 00:02:44,000
+So that's what that looks like.
+
+43
+00:02:44,000 --> 00:02:49,000
+Now let's try and type in another one right underneath it (typing on keyboard).
+
+44
+00:02:49,000 --> 00:02:55,000
+This time, we will give it an odd number, which should trigger an error.
+
+45
+00:02:55,000 --> 00:02:58,000
+And we'll do both.
+
+46
+00:02:58,000 --> 00:03:05,000
+Okay, now the first one that we called with 2 came back with the result of 4
+
+47
+00:03:05,000 --> 00:03:11,000
+at 378 milliseconds, and the call where we passed in the 3 generated an error,
+
+48
+00:03:11,000 --> 00:03:16,000
+and the error message -- so if you'll notice here, we checked for the error and we printed
+
+49
+00:03:16,000 --> 00:03:21,000
+out the message from that error object and got "Odd Input", so that was the error.
+
+50
+00:03:21,000 --> 00:03:35,000
+Let's add another one and (typing on keyboard) -- and we'll say that and run it.
+
+51
+00:03:35,000 --> 00:03:39,000
+Now we got -- this is kind of interesting, right, so we got three results
+
+52
+00:03:39,000 --> 00:03:41,000
+because we invoked it three times.
+
+53
+00:03:41,000 --> 00:03:48,000
+The results that we got back are not in the same order in which we invoked the functions.
+
+54
+00:03:48,000 --> 00:03:51,000
+We called "Event Doubler" with -- and passed it in 2.
+
+55
+00:03:51,000 --> 00:03:55,000
+Then we immediately called "Event Doubler" again, passed it in 3, and then 10,
+
+56
+00:03:55,000 --> 00:03:58,000
+and came down and none of them had finished,
+
+57
+00:03:58,000 --> 00:04:03,000
+so we printed "Console.log" here, which gave us the five dashes.
+
+58
+00:04:03,000 --> 00:04:07,000
+The first of the three to complete was this one where we passed
+
+59
+00:04:07,000 --> 00:04:11,000
+in a number 2, gave us back 4 with 737.
+
+60
+00:04:11,000 --> 00:04:16,000
+The second one to complete -- between the invocation with 3 and the invocation with 10 --
+
+61
+00:04:16,000 --> 00:04:20,000
+the second one to complete was actually this one, and so that's what was printed
+
+62
+00:04:20,000 --> 00:04:23,000
+to the console, and then the third one to complete was where we passed
+
+63
+00:04:23,000 --> 00:04:25,000
+in number 3 and we got the error.
+
+64
+00:04:25,000 --> 00:04:28,000
+The reason that they're different in this particular case is
+
+65
+00:04:28,000 --> 00:04:33,000
+because each one's waiting a random amount of time, and it just so happened
+
+66
+00:04:33,000 --> 00:04:39,000
+that the invocation where we passed in a 3 randomly got the highest of the three numbers,
+
+67
+00:04:39,000 --> 00:04:41,000
+and so that's how long it waited.
+
+68
+00:04:41,000 --> 00:04:43,000
+When you're dealing with the asynchronous code like this,
+
+69
+00:04:43,000 --> 00:04:48,000
+you don't control when the call-back is going to get invoked.
+
+70
+00:04:48,000 --> 00:04:53,000
+And if you're executing a series of calls to a function, whether like I'm doing one
+
+71
+00:04:53,000 --> 00:04:56,000
+after the other, or if you were doing them in a "for loop", you can't guarantee
+
+72
+00:04:56,000 --> 00:04:57,000
+that they're going to get called.
+
+73
+00:04:57,000 --> 00:05:01,000
+In fact, the call-backs will not get called in the order that you invoked the functions.
+
+74
+00:05:01,000 --> 00:05:06,000
+Okay, so here what I've done is I've taken our "Even Doubler" function call,
+
+75
+00:05:06,000 --> 00:05:10,000
+put it inside of a "for loop" where I'm going to call it 10 times.
+
+76
+00:05:10,000 --> 00:05:14,000
+Just so we'll know what's happening each time I call it, I'm printing out to the console
+
+77
+00:05:14,000 --> 00:05:16,000
+that I'm about to call it, and the value I'm going to call it for.
+
+78
+00:05:16,000 --> 00:05:22,000
+( Typing on Keyboard )
+
+79
+00:05:22,000 --> 00:05:27,000
+So if we move this up, you'll see here they're being invoked in order as it iterates
+
+80
+00:05:27,000 --> 00:05:30,000
+through the "for loop", and then here's our dashed line that --
+
+81
+00:05:30,000 --> 00:05:34,000
+but the results come back in a very random order, obviously.
+
+82
+00:05:34,000 --> 00:05:44,000
+So this would have been where we called it where the counter was 6 and 2 and 4 and 8, and so,
+
+83
+00:05:44,000 --> 00:05:47,000
+in this case,, they're coming back in what would seem like a random order,
+
+84
+00:05:47,000 --> 00:05:53,000
+but if you look at the timing, this confirms the fact that the timings were actually in order.
+
+85
+00:05:53,000 --> 00:05:58,000
+So let's say I wanted to print the message "Done"
+
+86
+00:05:58,000 --> 00:06:00,000
+at the bottom when this was completely done.
+
+87
+00:06:00,000 --> 00:06:07,000
+If I were to change this from a named function to an anonymous function,
+
+88
+00:06:07,000 --> 00:06:13,000
+and keep a count of the call-backs, I might have better luck with that so let's give that a try.
+
+89
+00:06:13,000 --> 00:06:18,000
+Okay, so now you'll notice that the named function is gone and it's been replaced here
+
+90
+00:06:18,000 --> 00:06:24,000
+with an anonymous function that I defined as a part of the call to "Even Doubler".
+
+91
+00:06:24,000 --> 00:06:29,000
+So now as I go through the "for loop", I'm calling "Even Doubler",
+
+92
+00:06:29,000 --> 00:06:34,000
+passing in the parameter, and then defining an anonymous function to handle as the call-back.
+
+93
+00:06:34,000 --> 00:06:40,000
+And this part of the call-back is the same as before, but now I'm doing one more thing.
+
+94
+00:06:40,000 --> 00:06:46,000
+I've initialized a counter to zero here outside of the "for loop", and then as I loop
+
+95
+00:06:46,000 --> 00:06:53,000
+through the invocations of the call-back, I am incrementing a count.
+
+96
+00:06:53,000 --> 00:06:58,000
+And then if I'm on the 10th call-back, I know I'm done.
+
+97
+00:06:58,000 --> 00:07:02,000
+It doesn't necessarily matter which variable this was invoked with,
+
+98
+00:07:02,000 --> 00:07:06,000
+but I know that I'm counting the number of times that the call-back has been invoked.
+
+99
+00:07:06,000 --> 00:07:09,000
+And if it's been invoked 10 times, then I'm done.
+
+100
+00:07:09,000 --> 00:07:14,000
+So let's run this and see if that works.
+
+101
+00:07:14,000 --> 00:07:20,000
+We see our invocations in order, as before, and we see our call-backs out of order as far
+
+102
+00:07:20,000 --> 00:07:24,000
+as the numbers they were invoked with, but they are in order by time.
+
+103
+00:07:24,000 --> 00:07:25,000
+That matches as before.
+
+104
+00:07:25,000 --> 00:07:32,000
+And now our "Done" is printed at the bottom of the output.
+
+105
+00:07:32,000 --> 00:07:36,000
+We can take a quick look at what's inside "Even Doubler" and see how that was written,
+
+106
+00:07:36,000 --> 00:07:42,000
+so what it's doing is calculating an amount of time to wait.
+
+107
+00:07:42,000 --> 00:07:49,000
+And if what was passed in is odd, then it's going to use
+
+108
+00:07:49,000 --> 00:07:52,000
+that "Set Time-out" function and say, "You know what?
+
+109
+00:07:52,000 --> 00:07:57,000
+After that period of time that you just calculated, I want you to call back an error."
+
+110
+00:07:57,000 --> 00:08:01,000
+And then if the number is even, it's going to say, "Well, you know what?
+
+111
+00:08:01,000 --> 00:08:06,000
+After that amount of time that you just calculated, I want you to call back,
+
+112
+00:08:06,000 --> 00:08:08,000
+but I don't want you to pass it back at the error.
+
+113
+00:08:08,000 --> 00:08:11,000
+In fact, I want you to pass a null for the error parameter; go ahead and double it,
+
+114
+00:08:11,000 --> 00:08:13,000
+and then pass back the wait time."
+
+115
+00:08:13,000 --> 00:59:00,000
+So this is where we get the multiple parameters in the successful call-back.
+

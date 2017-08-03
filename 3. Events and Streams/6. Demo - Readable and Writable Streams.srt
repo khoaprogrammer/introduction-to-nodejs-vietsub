@@ -1,0 +1,212 @@
+1
+00:00:01,000 --> 00:00:05,000
+So first, we'll take a look at a ReadableStream.
+
+2
+00:00:05,000 --> 00:00:08,000
+So to do this, we're going to use the Request Module.
+
+3
+00:00:08,000 --> 00:00:13,000
+And if you remember from Module Two the Request Module is a third-party module
+
+4
+00:00:13,000 --> 00:00:17,000
+that we've installed from the npm registry.
+
+5
+00:00:17,000 --> 00:00:20,000
+We've already done that here and we're going to Require and Request
+
+6
+00:00:20,000 --> 00:00:22,000
+and store it in the Request variable.
+
+7
+00:00:22,000 --> 00:00:29,000
+One of the nice things about Request is it understands and makes very good use of streams.
+
+8
+00:00:29,000 --> 00:00:34,000
+And so here, by simply calling Request and passing it in the name
+
+9
+00:00:34,000 --> 00:00:39,000
+of a URL, it will return to us a stream.
+
+10
+00:00:39,000 --> 00:00:43,000
+And then, because, if you remember, streams inherit from EventEmitters,
+
+11
+00:00:43,000 --> 00:00:47,000
+we can use the On function to subscribe to some of the events
+
+12
+00:00:47,000 --> 00:00:51,000
+that are emitted from a ReadableStream.
+
+13
+00:00:51,000 --> 00:00:58,000
+So the Data event is emitted whenever new Data has been received, and the End event is emitted
+
+14
+00:00:58,000 --> 00:01:02,000
+when there's no more data to be read.
+
+15
+00:01:02,000 --> 00:01:08,000
+And so we subscribe to these two events and what Request does is the stream
+
+16
+00:01:08,000 --> 00:01:13,000
+that it gives you back is actually the body of the Response of the Request.
+
+17
+00:01:13,000 --> 00:01:21,000
+So, in our example, it should be the html of the Pluralsight Homepage, and so as the Data
+
+18
+00:01:21,000 --> 00:01:27,000
+for that Homepage comes back, we'll get some number of Data events and the function
+
+19
+00:01:27,000 --> 00:01:30,000
+that we're asking it to invoke on the Data event.
+
+20
+00:01:30,000 --> 00:01:34,000
+The parameter that's passed to it is the actual Data that it received.
+
+21
+00:01:34,000 --> 00:01:38,000
+And so we want to log that to the console, and then our tags --
+
+22
+00:01:38,000 --> 00:01:40,000
+or if you want to call them that, that we added.
+
+23
+00:01:40,000 --> 00:01:41,000
+So let's go back to the bottom.
+
+24
+00:01:41,000 --> 00:01:43,000
+Done is there.
+
+25
+00:01:43,000 --> 00:01:47,000
+So our End event was emitted and we printed Done.
+
+26
+00:01:47,000 --> 00:01:50,000
+Now let's scroll back through and look for our Data with the angle brackets.
+
+27
+00:01:50,000 --> 00:01:57,000
+So if we see (scrolling sound) -- there's one.
+
+28
+00:01:57,000 --> 00:02:02,000
+So that means this was the start of one of the chunks.
+
+29
+00:02:02,000 --> 00:02:03,000
+(Scrolling sound) And we keep scrolling.
+
+30
+00:02:03,000 --> 00:02:05,000
+And there's another one.
+
+31
+00:02:05,000 --> 00:02:07,000
+(Scrolling sound) And so on and so forth.
+
+32
+00:02:07,000 --> 00:02:15,000
+So what happens is as the html is being returned from the http request,
+
+33
+00:02:15,000 --> 00:02:20,000
+those Data events are being fired and pieces of the html are being sent
+
+34
+00:02:20,000 --> 00:02:23,000
+to the functions being registered to that Data event.
+
+35
+00:02:23,000 --> 00:02:26,000
+And, of course, we're just printing them to the console.
+
+36
+00:02:26,000 --> 00:02:30,000
+This is how you would interact with the ReadableStream.
+
+37
+00:02:30,000 --> 00:02:32,000
+Next we'll take a look at a WriteableStream.
+
+38
+00:02:32,000 --> 00:02:35,000
+So in this case, the example we're going to use
+
+39
+00:02:35,000 --> 00:02:39,000
+for the WriteableStream is processed.standardout.
+
+40
+00:02:39,000 --> 00:02:45,000
+The Process module has several streams that it makes available.
+
+41
+00:02:45,000 --> 00:02:47,000
+One is StandardIn.
+
+42
+00:02:47,000 --> 00:02:49,000
+One is StandardOut and another is StandardError.
+
+43
+00:02:49,000 --> 00:02:53,000
+So, in this case, we wanted a WriteableStream, so we're going to use StandardOut.
+
+44
+00:02:53,000 --> 00:02:56,000
+And in this case what we're doing is we're simply writing
+
+45
+00:02:56,000 --> 00:02:58,000
+out Hello, and then writing out World.
+
+46
+00:02:58,000 --> 00:03:02,000
+And we're also going to inspect the Boolean variable just to make sure
+
+47
+00:03:02,000 --> 00:03:06,000
+that this StandardOut really is Writeable.
+
+48
+00:03:06,000 --> 00:03:08,000
+So, let's run this.
+
+49
+00:03:08,000 --> 00:03:11,000
+And so it's simple enough.
+
+50
+00:03:11,000 --> 00:03:12,000
+Is it Writeable?
+
+51
+00:03:12,000 --> 00:03:14,000
+Yes, and prints out True.
+
+52
+00:03:14,000 --> 00:03:17,000
+And the Write function does what you would expect.
+
+53
+00:03:17,000 --> 00:59:00,000
+It takes each of those and just simply writes them to StandardOut.
+

@@ -1,0 +1,140 @@
+1
+00:00:00,000 --> 00:00:05,000
+Okay, so now we're going to take a look at using require
+
+2
+00:00:05,000 --> 00:00:09,000
+to import one JavaScript file into another JavaScript file.
+
+3
+00:00:09,000 --> 00:00:15,000
+And to start off we're going to take a look at a file called mathfun.js
+
+4
+00:00:15,000 --> 00:00:23,000
+and what we've done is we've taken the evenDoubler function from our last module
+
+5
+00:00:23,000 --> 00:00:29,000
+and brought it forward here and put it in mathfun.js and really this maxTime
+
+6
+00:00:29,000 --> 00:00:34,000
+and the function definition are identical to what we looked at last time.
+
+7
+00:00:34,000 --> 00:00:41,000
+But now we've added a line here and assigned evenDoubler to module.exports and --
+
+8
+00:00:41,000 --> 00:00:44,000
+which should make it available to other scripts that want to use it.
+
+9
+00:00:44,000 --> 00:00:47,000
+And then while we were here we decided to go ahead
+
+10
+00:00:47,000 --> 00:00:51,000
+and just set a foo variable to the value of bar.
+
+11
+00:00:51,000 --> 00:00:57,000
+Treated as a module this has exported two variables evenDoubler and foo.
+
+12
+00:00:57,000 --> 00:01:03,000
+So now let's go see what it looks like to require that in another script.
+
+13
+00:01:03,000 --> 00:01:11,000
+So up here you can see we've called the require function and passed in dot slash mathfun.
+
+14
+00:01:11,000 --> 00:01:19,000
+The dot slash says look in the current directory and find me a JavaScript file named mathfun.
+
+15
+00:01:19,000 --> 00:01:22,000
+Now we don't put the .js here, but that's assumed.
+
+16
+00:01:22,000 --> 00:01:28,000
+Process results and the four loop, that's all just really a carryover from the prior video
+
+17
+00:01:28,000 --> 00:01:30,000
+so I'm not going to go through that.
+
+18
+00:01:30,000 --> 00:01:38,000
+But what you'll notice here is when I invoke evenDoubler now, I am prefixing it with mathfun
+
+19
+00:01:38,000 --> 00:01:44,000
+because that function has actually surfaced through this variable, mathfun.
+
+20
+00:01:44,000 --> 00:01:51,000
+So we're calling it mathfun.evenDoubler, just like we called it evenDoubler before and then
+
+21
+00:01:51,000 --> 00:01:55,000
+down here we're also going to try to call the foo variable in mathfun
+
+22
+00:01:55,000 --> 00:01:59,000
+which we should get back bar for that, and even though it shouldn't work we're going to go ahead
+
+23
+00:01:59,000 --> 00:02:02,000
+and try to print out a value of maxTime.
+
+24
+00:02:02,000 --> 00:02:08,000
+If you'll remember from mathfun js, it is set here but it's not exported.
+
+25
+00:02:08,000 --> 00:02:11,000
+So it should not be visible inside of this file.
+
+26
+00:02:11,000 --> 00:02:18,000
+So let's run this (silence).
+
+27
+00:02:18,000 --> 00:02:20,000
+Okay, so I'm not going to go over the bulk of the output,
+
+28
+00:02:20,000 --> 00:02:21,000
+this is just a carryover from last time.
+
+29
+00:02:21,000 --> 00:02:26,000
+You'll see we printed out our invocations and then we printed out our results down here.
+
+30
+00:02:26,000 --> 00:02:33,000
+But you'll notice that the function calls were made so the calls to evenDoubler were made
+
+31
+00:02:33,000 --> 00:02:42,000
+in the mathfun module and also when we accessed the foo variable we did get the value bar back,
+
+32
+00:02:42,000 --> 00:02:47,000
+like we expected and when we tried to access maxTime we got undefined
+
+33
+00:02:47,000 --> 00:02:49,000
+because that variable was not exported.
+
+34
+00:02:49,000 --> 00:02:56,000
+So, that is a quick look at what it looks like to import one JavaScript file
+
+35
+00:02:56,000 --> 00:59:00,000
+into another using the require statement.
+

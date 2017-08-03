@@ -1,0 +1,28 @@
+1
+00:00:00,000 --> 00:00:00,000
+Paul O'Fallon: Hello.
+
+2
+00:00:00,000 --> 00:00:06,000
+My name is Paul O'Fallon, and I'd like to welcome you to the course "An Introduction
+
+3
+00:00:06,000 --> 00:00:12,000
+to 'Node.js'", module one, "Getting Started with 'Node.js'".
+
+4
+00:00:12,000 --> 00:00:21,000
+In this module, we'll cover an overview of "Node.js", building and installing "Node.js",
+
+5
+00:00:21,000 --> 00:00:30,000
+developing for "Node" with the "Cloud9 IDE", an introduction to Node's "Event Loop", and the ins
+
+6
+00:00:30,000 --> 00:00:33,000
+and outs of writing code with call-backs.
+
+7
+00:00:33,000 --> 00:59:00,000
+So with that said, let's jump right in and get started.
+

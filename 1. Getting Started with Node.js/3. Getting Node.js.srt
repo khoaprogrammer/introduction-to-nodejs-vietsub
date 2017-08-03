@@ -1,0 +1,72 @@
+1
+00:00:00,000 --> 00:00:04,000
+There are several ways to get "Node.js".
+
+2
+00:00:04,000 --> 00:00:10,000
+There are installers and binaries available for download at nodejs.org,
+
+3
+00:00:10,000 --> 00:00:15,000
+and "Node" is available via many common "Linux" package managers.
+
+4
+00:00:15,000 --> 00:00:23,000
+Of course, the source code is also available if you'd like to download and build it yourself.
+
+5
+00:00:23,000 --> 00:00:28,000
+One handy way I've found to manage my "Node" installations in a "Linux"
+
+6
+00:00:28,000 --> 00:00:31,000
+or "Mac" environment is with "NVM",
+
+7
+00:00:31,000 --> 00:00:35,000
+a tool developed by Tim Caswell in the spirit of Ruby's "RVM".
+
+8
+00:00:35,000 --> 00:00:42,000
+It can be cloned directly from "GitHub", and used to install
+
+9
+00:00:42,000 --> 00:00:45,000
+and manage any number of "Node" versions.
+
+10
+00:00:45,000 --> 00:00:51,000
+Because "Node" is evolving so rapidly, tools like "NVM" can be helpful not only
+
+11
+00:00:51,000 --> 00:00:56,000
+with the manual task of downloading and building a new release, but also by allowing you
+
+12
+00:00:56,000 --> 00:00:59,000
+to rapidly switch executables for testing your code
+
+13
+00:00:59,000 --> 00:01:05,000
+against multiple versions of "Node" all on one system.
+
+14
+00:01:05,000 --> 00:01:07,000
+Here you see the steps to get started.
+
+15
+00:01:07,000 --> 00:01:14,000
+After cloning, simply source the shell script and run "NVM Install" with a version number.
+
+16
+00:01:14,000 --> 00:01:20,000
+You can switch versions with the "NVM Use" statement, and you can set your default version
+
+17
+00:01:20,000 --> 00:01:25,000
+of "Node" with the "NVM Alias Default" statement.
+
+18
+00:01:25,000 --> 00:59:00,000
+Let's take a look at using "NVM" to install "Node".
+

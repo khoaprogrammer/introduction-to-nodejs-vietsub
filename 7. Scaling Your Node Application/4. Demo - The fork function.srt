@@ -1,0 +1,148 @@
+1
+00:00:00,000 --> 00:00:07,000
+So now for our final child process example, we're going to take a look at the fork function.
+
+2
+00:00:07,000 --> 00:00:12,000
+And if you'll remember, fork is built on spawn but especially designed
+
+3
+00:00:12,000 --> 00:00:18,000
+for spawning child processes that are also Node applications.
+
+4
+00:00:18,000 --> 00:00:22,000
+And so here in our example, what we're doing is we're calling fork and asking it
+
+5
+00:00:22,000 --> 00:00:27,000
+to run honorstudent.js which is another Node program.
+
+6
+00:00:27,000 --> 00:00:32,000
+And when it executes, fork returns us a ChidProcess object,
+
+7
+00:00:32,000 --> 00:00:36,000
+and on that ChildProcess object we're going to invoke the send function
+
+8
+00:00:36,000 --> 00:00:38,000
+which means we're going to send it a message.
+
+9
+00:00:38,000 --> 00:00:45,000
+And the message we're going to send it is this JSON object which has a command called double
+
+10
+00:00:45,000 --> 00:00:50,000
+and a number 20, so we're basically asking the child double the number 20.
+
+11
+00:00:50,000 --> 00:00:55,000
+Now we're also listening for a message from the child and when we get a message,
+
+12
+00:00:55,000 --> 00:01:00,000
+we're printing the answer variable to the console and then we're sending another message
+
+13
+00:01:00,000 --> 00:01:04,000
+to the child and this time, the command we're sending is done.
+
+14
+00:01:04,000 --> 00:01:08,000
+This notion of a command in this JSON object could be whatever you want.
+
+15
+00:01:08,000 --> 00:01:14,000
+So now let's go look at the code that's been forked.
+
+16
+00:01:14,000 --> 00:01:19,000
+So our evenDoubler function is showing up again here, but now we've wrapped it inside
+
+17
+00:01:19,000 --> 00:01:24,000
+of a function that gets invoked whenever this child receives a message.
+
+18
+00:01:24,000 --> 00:01:29,000
+So in the child process, we're simply registering a function
+
+19
+00:01:29,000 --> 00:01:33,000
+for the message event on the process object.
+
+20
+00:01:33,000 --> 00:01:37,000
+So whenever this process receives a message, we're invoking this function.
+
+21
+00:01:37,000 --> 00:01:39,000
+And in the function, we're going to look at the command.
+
+22
+00:01:39,000 --> 00:01:45,000
+If you remember, part of the JSON object that we were sending was a CMD variable.
+
+23
+00:01:45,000 --> 00:01:51,000
+So if the CMD variable is set to double, we're going to log to the console that we were asked
+
+24
+00:01:51,000 --> 00:01:55,000
+to double this number and then we'll run our-- get all evenDoubler process.
+
+25
+00:01:55,000 --> 00:02:01,000
+And when we get an answer back, we will use process again to send a message back
+
+26
+00:02:01,000 --> 00:02:05,000
+to the parent and what we're going to send them is this JSON object
+
+27
+00:02:05,000 --> 00:02:06,000
+that will contain the result.
+
+28
+00:02:06,000 --> 00:02:12,000
+Now, if the command that we get is done, then this child process can exit
+
+29
+00:02:12,000 --> 00:02:14,000
+and so that's what process exit will do.
+
+30
+00:02:14,000 --> 00:02:19,000
+So let's go back and run this now and see what we get.
+
+31
+00:02:19,000 --> 00:02:25,000
+The first log to the console is from the honorstudent program where he's telling us
+
+32
+00:02:25,000 --> 00:02:30,000
+that he was asked to double the number 20, so he received the message with the command double.
+
+33
+00:02:30,000 --> 00:02:36,000
+The second line is from the parent process where he received the message back from the child
+
+34
+00:02:36,000 --> 00:02:40,000
+with the answer and he says the answer is 40.
+
+35
+00:02:40,000 --> 00:02:42,000
+So the main takeaway for this particular example
+
+36
+00:02:42,000 --> 00:02:45,000
+in the fork function is really the message passing
+
+37
+00:02:45,000 --> 00:59:00,000
+between the parent and the child process.
+

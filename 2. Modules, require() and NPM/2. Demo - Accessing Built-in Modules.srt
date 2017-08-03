@@ -1,0 +1,92 @@
+1
+00:00:00,000 --> 00:00:03,000
+Okay, so we're going to take a look at a very simple example
+
+2
+00:00:03,000 --> 00:00:09,000
+of using Node's built-in modules and including those via require.
+
+3
+00:00:09,000 --> 00:00:14,000
+So, here at the top of our script you'll see the require function,
+
+4
+00:00:14,000 --> 00:00:17,000
+require and then here we're just requiring the os module.
+
+5
+00:00:17,000 --> 00:00:22,000
+Now, to get access to the os module we didn't have to do anything special
+
+6
+00:00:22,000 --> 00:00:26,000
+in our Node installation, it just comes with Node, but it's not included in your project
+
+7
+00:00:26,000 --> 00:00:30,000
+by default so we have to include it by calling require os
+
+8
+00:00:30,000 --> 00:00:33,000
+and we're assigning that to the os variable.
+
+9
+00:00:33,000 --> 00:00:36,000
+This is a module that will give you some information
+
+10
+00:00:36,000 --> 00:00:39,000
+about the operating system that your script is running on.
+
+11
+00:00:39,000 --> 00:00:44,000
+In this case we're going to print out the host name, we're going to print
+
+12
+00:00:44,000 --> 00:00:49,000
+out the 15 minute load average, which is the third element in the array,
+
+13
+00:00:49,000 --> 00:00:53,000
+and we're going to print out the free memory and the total memory.
+
+14
+00:00:53,000 --> 00:00:58,000
+And I have this little function here just to convert what it gives me back to Megabytes.
+
+15
+00:00:58,000 --> 00:01:01,000
+So, it's really as simple as that for the os module.
+
+16
+00:01:01,000 --> 00:01:04,000
+Obviously as we go through the remaining course modules we're going
+
+17
+00:01:04,000 --> 00:01:06,000
+to be diving into more of Node's modules.
+
+18
+00:01:06,000 --> 00:01:12,000
+The os is one of the more simple ones, but it gives you an idea of the require.
+
+19
+00:01:12,000 --> 00:01:17,000
+So now let's run this and take a look at the console.
+
+20
+00:01:17,000 --> 00:01:23,000
+So you'll see the host name, the load average and then the memory statistics here.
+
+21
+00:01:23,000 --> 00:01:31,000
+So, the os module is a handy way to get access to this information in your Node application,
+
+22
+00:01:31,000 --> 00:01:34,000
+but more importantly this is a very simple example of how you would require
+
+23
+00:01:34,000 --> 00:59:00,000
+in an external module using require, assign it to a variable and then use it in your script.
+

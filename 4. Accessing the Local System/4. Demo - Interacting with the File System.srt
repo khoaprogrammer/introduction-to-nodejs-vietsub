@@ -1,0 +1,204 @@
+1
+00:00:00,000 --> 00:00:04,000
+In demonstrating interacting with the file system we're going to look
+
+2
+00:00:04,000 --> 00:00:10,000
+at both the synchronous and asynchronous functions provided by the fs module
+
+3
+00:00:10,000 --> 00:00:15,000
+and we're going to start with the synchronous functions.
+
+4
+00:00:15,000 --> 00:00:21,000
+Now each of the synchronous functions has the word sync in the name at the end
+
+5
+00:00:21,000 --> 00:00:26,000
+of the function name and so you'll see that repeated over and over again here.
+
+6
+00:00:26,000 --> 00:00:33,000
+We start by requiring the fs module and from there we check to see
+
+7
+00:00:33,000 --> 00:00:39,000
+if the temp directory exists and if it does we check to see if new dot text is
+
+8
+00:00:39,000 --> 00:00:44,000
+in that directory and if it is we remove that new dot text file
+
+9
+00:00:44,000 --> 00:00:47,000
+and then we remove the directory temp.
+
+10
+00:00:47,000 --> 00:00:52,000
+This lets us run this script over and over again because it cleans up after itself.
+
+11
+00:00:52,000 --> 00:00:58,000
+We make the directory temp, we check to be sure that the directory exists
+
+12
+00:00:58,000 --> 00:01:04,000
+and if it does we change into that directory, then we create a file called test dot text
+
+13
+00:01:04,000 --> 00:01:11,000
+and pass in this stream to be the contents of the file, then we rename the file,
+
+14
+00:01:11,000 --> 00:01:15,000
+then we print the size of the file and the contents of the file.
+
+15
+00:01:15,000 --> 00:01:19,000
+And so this is very top down, these are the synchronous functions
+
+16
+00:01:19,000 --> 00:01:23,000
+and so each one executes one after the other, no call backs.
+
+17
+00:01:23,000 --> 00:01:30,000
+So let's run this (silence).
+
+18
+00:01:30,000 --> 00:01:35,000
+So if we look at the output it says the directory exists removing,
+
+19
+00:01:35,000 --> 00:01:40,000
+which means that it did find the temp directory and then it comes down here
+
+20
+00:01:40,000 --> 00:01:47,000
+and creates the file, renames it and then tells us that the file has a size of 35 bytes
+
+21
+00:01:47,000 --> 00:01:51,000
+and that this is some test text from the file is the contents.
+
+22
+00:01:51,000 --> 00:01:55,000
+So it's written to test dot text and then renamed
+
+23
+00:01:55,000 --> 00:01:58,000
+to new dot text and then that's the contents.
+
+24
+00:01:58,000 --> 00:02:04,000
+Now that we've seen what this logic looks like implemented with the synchronous functions,
+
+25
+00:02:04,000 --> 00:02:10,000
+let's take a look at the same logic implemented using the asynchronous version
+
+26
+00:02:10,000 --> 00:02:11,000
+of these functions.
+
+27
+00:02:11,000 --> 00:02:17,000
+So now we're looking at the asynchronous functions provided by the fs module.
+
+28
+00:02:17,000 --> 00:02:21,000
+Here we've left our cleanup code at the top using the synchronous version
+
+29
+00:02:21,000 --> 00:02:26,000
+because that's really just to kind of remove the previous invocations of this script.
+
+30
+00:02:26,000 --> 00:02:31,000
+So before we even go through each line of the code you're probably thinking that this looks
+
+31
+00:02:31,000 --> 00:02:34,000
+like the Christmas tree problem and you would be right.
+
+32
+00:02:34,000 --> 00:02:38,000
+This code implemented just like this, all just with anonymous functions
+
+33
+00:02:38,000 --> 00:02:42,000
+as callbacks does create a Christmas tree problem and no,
+
+34
+00:02:42,000 --> 00:02:44,000
+I would not want to maintain code that looks like this
+
+35
+00:02:44,000 --> 00:02:47,000
+for anything longer than a demonstration.
+
+36
+00:02:47,000 --> 00:02:51,000
+But it is a good example and actually a tangible example
+
+37
+00:02:51,000 --> 00:02:54,000
+of what a Christmas tree problem can look like.
+
+38
+00:02:54,000 --> 00:02:59,000
+You'll notice that the word sync is gone from all of the function names
+
+39
+00:02:59,000 --> 00:03:03,000
+and so here we're making the directory temp
+
+40
+00:03:03,000 --> 00:03:09,000
+and in the callback we are calling the exists, to be sure that it exists.
+
+41
+00:03:09,000 --> 00:03:14,000
+And in that callback we get whether or not it exists, so we'll check and be sure
+
+42
+00:03:14,000 --> 00:03:18,000
+that it does exist and if it does we change into the directory, we write the file,
+
+43
+00:03:18,000 --> 00:03:25,000
+we rename the file, we get the statistics for the file to get the size,
+
+44
+00:03:25,000 --> 00:03:28,000
+print that to the console and then we read the file and get the data
+
+45
+00:03:28,000 --> 00:03:31,000
+and then we print out the contents of the file.
+
+46
+00:03:31,000 --> 00:03:35,000
+Each one of these is building on the one prior by being implemented
+
+47
+00:03:35,000 --> 00:03:39,000
+in the prior functions callback which gives us the Christmas tree.
+
+48
+00:03:39,000 --> 00:03:43,000
+But let's run this and see what we get (silence).
+
+49
+00:03:43,000 --> 00:03:48,000
+So if we look at the results we get basically the same output as before.
+
+50
+00:03:48,000 --> 00:03:55,000
+This is an example of what it would look like to use the asynchronous functions in comparison
+
+51
+00:03:55,000 --> 00:59:00,000
+to the synchronous functions for accessing the file system.
+

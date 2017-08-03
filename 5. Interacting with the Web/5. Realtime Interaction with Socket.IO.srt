@@ -1,0 +1,128 @@
+1
+00:00:01,000 --> 00:00:05,000
+While not a core part of Node, it makes sense to take a few minutes
+
+2
+00:00:05,000 --> 00:00:09,000
+and follow the web server scenario to its logical next step.
+
+3
+00:00:09,000 --> 00:00:14,000
+Socket.IO provides an abstraction over the various methods used
+
+4
+00:00:14,000 --> 00:00:19,000
+to maintain an active connection between a browser and a server.
+
+5
+00:00:19,000 --> 00:00:23,000
+It will use web sockets where they are supported, and will transparently fall back
+
+6
+00:00:23,000 --> 00:00:28,000
+to several other techniques in cases where web sockets are not yet supported,
+
+7
+00:00:28,000 --> 00:00:32,000
+either due to browser or firewall limitations.
+
+8
+00:00:32,000 --> 00:00:37,000
+In the case of Node.js, Socket.IO also provides a consistent interface
+
+9
+00:00:37,000 --> 00:00:43,000
+for performing these socket-based communications in both the browser and the server.
+
+10
+00:00:43,000 --> 00:00:46,000
+This is one tangible demonstration of the synergy
+
+11
+00:00:46,000 --> 00:00:50,000
+between JavaScript on the client and the server.
+
+12
+00:00:50,000 --> 00:00:56,000
+Here on the left, we have a snippet of code that would run in Node.js on a server.
+
+13
+00:00:56,000 --> 00:01:02,000
+Notice that it starts by requiring the Socket.IO module in invoking the listen function.
+
+14
+00:01:02,000 --> 00:01:09,000
+From there, it is using the event emitter construct to listen to and emit events.
+
+15
+00:01:09,000 --> 00:01:15,000
+On the browser side, the Socket.IO JavaScript library is loaded from the server.
+
+16
+00:01:15,000 --> 00:01:21,000
+Notice that there is no special configuration on the server to provide this JavaScript file.
+
+17
+00:01:21,000 --> 00:01:26,000
+That is handled transparently by the Socket.IO Node.js module.
+
+18
+00:01:26,000 --> 00:01:31,000
+Now, let's step through a typical back-and-forth scenario.
+
+19
+00:01:31,000 --> 00:01:37,000
+The browser will issue IO.connect to establish a connection to the Node.js server.
+
+20
+00:01:37,000 --> 00:01:44,000
+The server receives a connection event and emits a news event with a payload, "Hello world."
+
+21
+00:01:44,000 --> 00:01:50,000
+The browser receives this news event and invokes the appropriate function.
+
+22
+00:01:50,000 --> 00:01:53,000
+Within this function, the browser emits an event entitled,
+
+23
+00:01:53,000 --> 00:01:57,000
+"my other event," and provides some data.
+
+24
+00:01:57,000 --> 00:02:01,000
+This event is received on the Node.js server and the appropriate function is invoked
+
+25
+00:02:01,000 --> 00:02:04,000
+which logs the payload data to the console.
+
+26
+00:02:04,000 --> 00:02:08,000
+The powerful thing about this scenario is that both the browser
+
+27
+00:02:08,000 --> 00:02:13,000
+and the server are using the same constructs for emitting and acting
+
+28
+00:02:13,000 --> 00:02:16,000
+on messages being passed back and forth.
+
+29
+00:02:16,000 --> 00:02:21,000
+The code on the server looks very similar to that in the browser and vice-versa.
+
+30
+00:02:21,000 --> 00:02:26,000
+During this type of development in other server site languages it's certainly possible,
+
+31
+00:02:26,000 --> 00:02:31,000
+but it will lack the symmetry and implementation and all the benefits that come with it.
+
+32
+00:02:31,000 --> 00:59:00,000
+Let's take a quick look at a Socket.IO Node.js example.
+

@@ -1,0 +1,196 @@
+1
+00:00:00,000 --> 00:00:06,000
+So now we're going to take a look at using Node's HTTP module
+
+2
+00:00:06,000 --> 00:00:10,000
+to make some HTTP client requests.
+
+3
+00:00:10,000 --> 00:00:14,000
+In our first example, we're going to come down to this code here
+
+4
+00:00:14,000 --> 00:00:18,000
+where we're calling HTTP requests, and if you remember,
+
+5
+00:00:18,000 --> 00:00:24,000
+I mentioned that the first parameter could be either a simple URL or an object.
+
+6
+00:00:24,000 --> 00:00:31,000
+So for our first run, we're going to use a simple URL and we're going to pass it a callback
+
+7
+00:00:31,000 --> 00:00:35,000
+to be called when the response is ready and it will pass us the response.
+
+8
+00:00:35,000 --> 00:00:43,000
+And then we're going to log the status code in the response to the console, which will give us
+
+9
+00:00:43,000 --> 00:00:51,000
+like a 200 or 404 or 500 the HTTP status code that is returned, and then we're also going
+
+10
+00:00:51,000 --> 00:00:56,000
+to pipe the response to process.stanardout.
+
+11
+00:00:56,000 --> 00:01:01,000
+So when calling HTTP requests and being returned the request object,
+
+12
+00:01:01,000 --> 00:01:08,000
+in order to have the request actually invoked, you have to call a request.end basically,
+
+13
+00:01:08,000 --> 00:01:14,000
+closing the writeable stream that it's giving you when you create the request.
+
+14
+00:01:14,000 --> 00:01:20,000
+Let's run this now and see what we get.
+
+15
+00:01:20,000 --> 00:01:26,000
+And so here you can see in the output that we got the HTML from Google's homepage,
+
+16
+00:01:26,000 --> 00:01:33,000
+and the JavaScript; and if we scroll (typing) up to the top we see 200, that's the status code
+
+17
+00:01:33,000 --> 00:01:38,000
+that was returned which is an okay status code.
+
+18
+00:01:38,000 --> 00:01:44,000
+That is a very simple way to make a request and get your response back.
+
+19
+00:01:44,000 --> 00:01:49,000
+So now let's make the same request but instead of passing in a simple URL,
+
+20
+00:01:49,000 --> 00:01:53,000
+let's pass in the options object that we've created here.
+
+21
+00:01:53,000 --> 00:01:55,000
+It will end up making the same request
+
+22
+00:01:55,000 --> 00:01:59,000
+but you can see we've defined the values as a set of properties.
+
+23
+00:01:59,000 --> 00:02:09,000
+So let's substitute out the simple URL for the options variable and run it again
+
+24
+00:02:09,000 --> 00:02:14,000
+and we should get the same answer.
+
+25
+00:02:14,000 --> 00:02:15,000
+And we do.
+
+26
+00:02:15,000 --> 00:02:19,000
+We get the 200 response and then if we scroll through you'll see all
+
+27
+00:02:19,000 --> 00:02:21,000
+of the HTML and JavaScript we've got before.
+
+28
+00:02:21,000 --> 00:02:24,000
+So if you know you're going to make a get request,
+
+29
+00:02:24,000 --> 00:02:27,000
+we can optimize this by just saying "get."
+
+30
+00:02:27,000 --> 00:02:34,000
+Because you're doing a get, the request that is returned does not have to be closed
+
+31
+00:02:34,000 --> 00:02:38,000
+because in a get scenario it knows you're not going to be uploading any data,
+
+32
+00:02:38,000 --> 00:02:44,000
+so you can leave off the request.end, and in fact, you don't even really need
+
+33
+00:02:44,000 --> 00:02:48,000
+to take the return variable, so you can take that out, as well.
+
+34
+00:02:48,000 --> 00:02:54,000
+Now, let's run this.
+
+35
+00:02:54,000 --> 00:02:56,000
+And you can see it did the same thing.
+
+36
+00:02:56,000 --> 00:03:00,000
+Interestingly enough, so I used Google in this example.
+
+37
+00:03:00,000 --> 00:03:03,000
+In previous examples, I had used the Pluralsight homepage,
+
+38
+00:03:03,000 --> 00:03:05,000
+so let's put that in here and see what we get.
+
+39
+00:03:05,000 --> 00:03:14,000
+( Typing )
+
+40
+00:03:14,000 --> 00:03:16,000
+Now, this is interesting.
+
+41
+00:03:16,000 --> 00:03:23,000
+So what we got back was a 301 status code, and the HTML that this object has moved
+
+42
+00:03:23,000 --> 00:03:25,000
+and can be found at a different URL.
+
+43
+00:03:25,000 --> 00:03:30,000
+So a difference between the built-in HTTP request and get functions
+
+44
+00:03:30,000 --> 00:03:37,000
+and the third party module that we used, is that these do not automatically follow redirects
+
+45
+00:03:37,000 --> 00:03:43,000
+where if you remember in our previous modules when we simply used the third party module
+
+46
+00:03:43,000 --> 00:03:47,000
+to issue a request against Pluralsight, we got the HTML back.
+
+47
+00:03:47,000 --> 00:03:52,000
+We didn't even really know that there was a redirect that needed to be followed.
+
+48
+00:03:52,000 --> 00:03:57,000
+In this particular case, you're operating at a slightly lower level where you would have
+
+49
+00:03:57,000 --> 00:59:00,000
+to deal with those redirects on your own.
+

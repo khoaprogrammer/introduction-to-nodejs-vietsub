@@ -1,0 +1,100 @@
+1
+00:00:00,000 --> 00:00:05,000
+Another use of the require function is to access functionality located
+
+2
+00:00:05,000 --> 00:00:09,000
+within other files in your project.
+
+3
+00:00:09,000 --> 00:00:13,000
+In Node's module system each of your JavaScript files is a module
+
+4
+00:00:13,000 --> 00:00:18,000
+and can expose functionality to be required by other files.
+
+5
+00:00:18,000 --> 00:00:24,000
+This is a great way to modularize your code, making it easier to develop and maintain.
+
+6
+00:00:24,000 --> 00:00:32,000
+In this case the require syntax is more rich and can include file system-like semantics.
+
+7
+00:00:32,000 --> 00:00:41,000
+For example, you can require a file in the same directory, in a subdirectory,
+
+8
+00:00:41,000 --> 00:00:44,000
+or in another navigable directory.
+
+9
+00:00:44,000 --> 00:00:48,000
+Note the dot slash prefix is always required in this case
+
+10
+00:00:48,000 --> 00:00:53,000
+and the js suffix of the file is omitted.
+
+11
+00:00:53,000 --> 00:00:58,000
+Aside from the syntax of the module name, require operates the same as before,
+
+12
+00:00:58,000 --> 00:01:06,000
+meaning that you can still require a single variable from another JavaScript file like this.
+
+13
+00:01:06,000 --> 00:01:10,000
+The way you make variables available to other JavaScript files is
+
+14
+00:01:10,000 --> 00:01:14,000
+by assigning values to the module.exports object.
+
+15
+00:01:14,000 --> 00:01:18,000
+For example, let's take a look at one.js.
+
+16
+00:01:18,000 --> 00:01:27,000
+It has the variable count assigned the value of two and doIt assigned a function.
+
+17
+00:01:27,000 --> 00:01:34,000
+We've made the function available to external callers by adding it to module.exports.
+
+18
+00:01:34,000 --> 00:01:40,000
+Similarly the variable foo with the value bar is also exported.
+
+19
+00:01:40,000 --> 00:01:47,000
+Now, in two.js we require the file one.js using this syntax.
+
+20
+00:01:47,000 --> 00:01:55,000
+Next we can invoke the function doIt since it was exported in one.js
+
+21
+00:01:55,000 --> 00:01:59,000
+and we have similar access to the foo.
+
+22
+00:01:59,000 --> 00:02:07,000
+However, since the count variable in one.js was not exported it is not available in two.js.
+
+23
+00:02:07,000 --> 00:02:13,000
+Only those variables defined as a part of module.exports are available externally.
+
+24
+00:02:13,000 --> 00:02:17,000
+Let's take a look at an example of exporting and requiring variables
+
+25
+00:02:17,000 --> 00:59:00,000
+between JavaScript files (silence).
+

@@ -1,0 +1,128 @@
+1
+00:00:00,000 --> 00:00:05,000
+Node has recently introduced an experimental cluster module.
+
+2
+00:00:05,000 --> 00:00:12,000
+This builds on the child process fork function and introduces classes, functions,
+
+3
+00:00:12,000 --> 00:00:18,000
+and events for managing a master application and a set of "Worker" Nodes.
+
+4
+00:00:18,000 --> 00:00:23,000
+In a typical cluster scenario, there will be a Node.js script
+
+5
+00:00:23,000 --> 00:00:27,000
+which serves as the master application.
+
+6
+00:00:27,000 --> 00:00:31,000
+The cluster module provides a variable isMaster, which will tell you
+
+7
+00:00:31,000 --> 00:00:36,000
+if your code is running the master process.
+
+8
+00:00:36,000 --> 00:00:41,000
+To create Worker Nodes, actually separate Node.js processes.
+
+9
+00:00:41,000 --> 00:00:44,000
+Cluster provides a fork function.
+
+10
+00:00:44,000 --> 00:00:50,000
+By default, fork will run the same Node.js grep for the worker as the master.
+
+11
+00:00:50,000 --> 00:00:54,000
+You can use the isMaster variable in a large if statement
+
+12
+00:00:54,000 --> 00:00:58,000
+to segment the master application from the worker code.
+
+13
+00:00:58,000 --> 00:01:05,000
+Executing the fork function will also emit a fork event in the master.
+
+14
+00:01:05,000 --> 00:01:11,000
+Once the worker process has been spawned, the master will also emit an online event indicating
+
+15
+00:01:11,000 --> 00:01:14,000
+that the worker has been created.
+
+16
+00:01:14,000 --> 00:01:21,000
+Additional workers can be created with subsequent invocations of the fork function.
+
+17
+00:01:21,000 --> 00:01:24,000
+Cluster also provides an isWorker variable
+
+18
+00:01:24,000 --> 00:01:29,000
+to indicate whether your code is executing inside a worker Node.
+
+19
+00:01:29,000 --> 00:01:37,000
+A common cluster scenario is spawning multiple worker Nodes to create a scalable web server,
+
+20
+00:01:37,000 --> 00:01:44,000
+if the worker executes a listen function, a listening event is emitted on the master.
+
+21
+00:01:44,000 --> 00:01:49,000
+And the arguments to this listen function are transmitted to the master
+
+22
+00:01:49,000 --> 00:01:55,000
+where it will create a listening server for that IP import if one does not already exist,
+
+23
+00:01:55,000 --> 00:01:59,000
+and pass a handle to this server back to the worker.
+
+24
+00:01:59,000 --> 00:02:05,000
+If another worker process executes the same listen function,
+
+25
+00:02:05,000 --> 00:02:08,000
+the master will send the same handle to this second worker.
+
+26
+00:02:08,000 --> 00:02:13,000
+This allows both workers to listen on the same IP port combination.
+
+27
+00:02:13,000 --> 00:02:15,000
+It is then up to the operating system
+
+28
+00:02:15,000 --> 00:02:20,000
+as to how incoming requests are distributed between worker processes.
+
+29
+00:02:20,000 --> 00:02:23,000
+They do not proxy through the master.
+
+30
+00:02:23,000 --> 00:02:25,000
+Requests are sent directly to worker processes.
+
+31
+00:02:25,000 --> 00:02:30,000
+Let's take a look at an example of using the cluster module
+
+32
+00:02:30,000 --> 00:59:00,000
+to set up a multi worker web server.
+

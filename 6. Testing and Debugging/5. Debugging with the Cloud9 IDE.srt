@@ -1,0 +1,60 @@
+1
+00:00:00,000 --> 00:00:05,000
+Node.js provides hooks for debugging your applications.
+
+2
+00:00:05,000 --> 00:00:10,000
+And the Cloud9 IDE makes good use of them and their debugging tools.
+
+3
+00:00:10,000 --> 00:00:14,000
+Here in this screenshot, you can see the breakpoint in line 31,
+
+4
+00:00:14,000 --> 00:00:18,000
+as well as the value of the data variable.
+
+5
+00:00:18,000 --> 00:00:21,000
+The window on the right shows the current call stack.
+
+6
+00:00:21,000 --> 00:00:27,000
+In fact, the buttons along the right side of the window make up Cloud9's debugging functions,
+
+7
+00:00:27,000 --> 00:00:36,000
+including options to resume as well as step into, over and out of the code being executed.
+
+8
+00:00:36,000 --> 00:00:40,000
+View the call stack, which you can see here in the screenshot.
+
+9
+00:00:40,000 --> 00:00:45,000
+Execute arbitrary JavaScript during your debug session.
+
+10
+00:00:45,000 --> 00:00:49,000
+View the values of currently active variables,
+
+11
+00:00:49,000 --> 00:00:55,000
+and the ability to manage the breakpoints in your application.
+
+12
+00:00:55,000 --> 00:00:59,000
+Even more powerful is combining this server side Node.js debugging
+
+13
+00:00:59,000 --> 00:01:04,000
+with the client side JavaScript debug capabilities of the Chrome web browser.
+
+14
+00:01:04,000 --> 00:01:09,000
+The two of these together make a powerful JavaScript debug suite.
+
+15
+00:01:09,000 --> 00:59:00,000
+Let's take a look at some examples of debugging Node applications.
+

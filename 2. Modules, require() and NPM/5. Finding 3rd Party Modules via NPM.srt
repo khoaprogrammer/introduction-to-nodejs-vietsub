@@ -1,0 +1,116 @@
+1
+00:00:00,000 --> 00:00:03,000
+The final source for Node modules we're going
+
+2
+00:00:03,000 --> 00:00:07,000
+to cover is the Node Package Manager or NPM registry.
+
+3
+00:00:07,000 --> 00:00:15,000
+It is home to many third party modules available for download and use in your Node applications.
+
+4
+00:00:15,000 --> 00:00:18,000
+Modules are installed from the NPM registry
+
+5
+00:00:18,000 --> 00:00:22,000
+by using the NPM command that is installed with Node.
+
+6
+00:00:22,000 --> 00:00:27,000
+NPM install and then the module name will download and install this module
+
+7
+00:00:27,000 --> 00:00:33,000
+into a Node modules folder inside your project.
+
+8
+00:00:33,000 --> 00:00:36,000
+Modules that have been downloaded and installed this way can be required
+
+9
+00:00:36,000 --> 00:00:42,000
+with the same simple string identifiers as Node's built-in modules.
+
+10
+00:00:42,000 --> 00:00:46,000
+Node understands how to traverse the Node modules folder structure
+
+11
+00:00:46,000 --> 00:00:50,000
+to load the appropriate JavaScript code.
+
+12
+00:00:50,000 --> 00:00:55,000
+Similar to loading a single function from a file, you can also load a specific file
+
+13
+00:00:55,000 --> 00:01:00,000
+from a module by calling require with the relative past to that file
+
+14
+00:01:00,000 --> 00:01:03,000
+within the modules directory structure.
+
+15
+00:01:03,000 --> 00:01:08,000
+While technically feasible, this should be done with extreme care.
+
+16
+00:01:08,000 --> 00:01:11,000
+Pulling a single file from deep within the directory structure
+
+17
+00:01:11,000 --> 00:01:19,000
+of a third party module may introduce a level of coupling that the module author never intended.
+
+18
+00:01:19,000 --> 00:01:24,000
+Finally, some Node modules provide more than variables
+
+19
+00:01:24,000 --> 00:01:27,000
+and functions you can access within your Node application.
+
+20
+00:01:27,000 --> 00:01:31,000
+They also provide utilities you can invoke from the command line.
+
+21
+00:01:31,000 --> 00:01:35,000
+Since these modules have a scope beyond any one application,
+
+22
+00:01:35,000 --> 00:01:40,000
+you will want to install them outside of your current projects directory tree.
+
+23
+00:01:40,000 --> 00:01:46,000
+You can do this by invoking NPM install with the dash G flag for global.
+
+24
+00:01:46,000 --> 00:01:52,000
+This will install the module along with the appropriate command line executable on your path
+
+25
+00:01:52,000 --> 00:01:56,000
+so they are available both inside and outside of your project.
+
+26
+00:01:56,000 --> 00:02:02,000
+Some examples of Node modules that provide command line utilities include the express web
+
+27
+00:02:02,000 --> 00:02:06,000
+framework, the Mocha test framework and the module provided
+
+28
+00:02:06,000 --> 00:02:09,000
+by Microsoft for their Azure cloud platform.
+
+29
+00:02:09,000 --> 00:59:00,000
+Let's take a look at installing some third party modules using NPM (silence).
+

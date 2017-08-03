@@ -1,0 +1,244 @@
+1
+00:00:00,000 --> 00:00:07,000
+So, for our first process example we're going to take a look at the three streams
+
+2
+00:00:07,000 --> 00:00:11,000
+that are provided by the "process" object.
+
+3
+00:00:11,000 --> 00:00:16,000
+Now, we spent a lot of time looking at streams in an earlier module, so I'm not going to go
+
+4
+00:00:16,000 --> 00:00:21,000
+into the ins and outs of streams themselves and in fact
+
+5
+00:00:21,000 --> 00:00:28,000
+in that earlier module we did use the process dot standard out stream in our examples.
+
+6
+00:00:28,000 --> 00:00:33,000
+But what we're going to do here is look at a modified version of an example
+
+7
+00:00:33,000 --> 00:00:38,000
+from the Node.js documentation and we're going to try to hit on all three of the streams;
+
+8
+00:00:38,000 --> 00:00:41,000
+standard in, standard out and standard error.
+
+9
+00:00:41,000 --> 00:00:46,000
+And so what we're doing here is we're going to actually be listening for data coming
+
+10
+00:00:46,000 --> 00:00:53,000
+in on standard in and when it does we're going to turn around and write it to standard out
+
+11
+00:00:53,000 --> 00:00:59,000
+and when the standard in stream is closed we're going
+
+12
+00:00:59,000 --> 00:01:04,000
+to write another message, but this time to standard error.
+
+13
+00:01:04,000 --> 00:01:10,000
+So these are the underlying events and functions that make up the stream interface,
+
+14
+00:01:10,000 --> 00:01:16,000
+but here we're interacting with them directly as opposed to say piping to or from one of these.
+
+15
+00:01:16,000 --> 00:01:24,000
+Another thing about standard in is that this stream starts paused, so you must call resume
+
+16
+00:01:24,000 --> 00:01:27,000
+in order for it to begin receiving information.
+
+17
+00:01:27,000 --> 00:01:32,000
+So we're going to run this, but in Cloud9 we're going to run this differently
+
+18
+00:01:32,000 --> 00:01:35,000
+than we've run some of our previous examples.
+
+19
+00:01:35,000 --> 00:01:40,000
+If you look down in the lower right hand corner you'll see an open a terminal button
+
+20
+00:01:40,000 --> 00:01:44,000
+and if you click on that what you'll actually get is in your tabbed interface,
+
+21
+00:01:44,000 --> 00:01:51,000
+you will get another tab that is an actual terminal session into your workspace.
+
+22
+00:01:51,000 --> 00:01:54,000
+And so since we want our process to read from standard in,
+
+23
+00:01:54,000 --> 00:01:56,000
+we really need to run in it a shell.
+
+24
+00:01:56,000 --> 00:02:00,000
+And so, this will give us the ability to do that and so we're
+
+25
+00:02:00,000 --> 00:02:09,000
+down inside the appropriate directory, so let's run our script (typing).
+
+26
+00:02:09,000 --> 00:02:20,000
+And so now as we type into standard in (typing) you'll see that we are triggering the event
+
+27
+00:02:20,000 --> 00:02:24,000
+which in turn is causing us to write to standard out.
+
+28
+00:02:24,000 --> 00:02:32,000
+And so for as long as we were to do this we would continue to see the data be read
+
+29
+00:02:32,000 --> 00:02:35,000
+by standard in and written to standard out.
+
+30
+00:02:35,000 --> 00:02:42,000
+And then if we do a control D to exit out of the program you'll see the end
+
+31
+00:02:42,000 --> 00:02:44,000
+which was printed to standard error.
+
+32
+00:02:44,000 --> 00:02:51,000
+This program worked like we expected, it was listening for when I typed in hello and world,
+
+33
+00:02:51,000 --> 00:02:56,000
+it triggered these data events on standard in where we turned around and wrote to standard out
+
+34
+00:02:56,000 --> 00:03:05,000
+and then my control D ended the standard in stream which caused the end event where we wrote
+
+35
+00:03:05,000 --> 00:03:08,000
+to standard error that we're ending.
+
+36
+00:03:08,000 --> 00:03:15,000
+So now we're going to take a look at some of the events provided by the "process" object.
+
+37
+00:03:15,000 --> 00:03:20,000
+We've taken most of the code from our earlier example and copied it here.
+
+38
+00:03:20,000 --> 00:03:26,000
+So we still have our standard in, standard out, standard error code from before
+
+39
+00:03:26,000 --> 00:03:29,000
+but we've added a couple of extra items.
+
+40
+00:03:29,000 --> 00:03:34,000
+Now we're also listening for one of the POSIX signals, we're listening for SIG term
+
+41
+00:03:34,000 --> 00:03:39,000
+and if we receive that event we're going to write to standard error
+
+42
+00:03:39,000 --> 00:03:43,000
+and we've also added a console dot log statement here
+
+43
+00:03:43,000 --> 00:03:48,000
+to log the process ID of this particular process.
+
+44
+00:03:48,000 --> 00:03:55,000
+So let's run this and see if we can trigger this SIG term event.
+
+45
+00:03:55,000 --> 00:04:00,000
+So we're going to run the program here (typing).
+
+46
+00:04:00,000 --> 00:04:05,000
+And, remember the one line we added for the console dot log to print
+
+47
+00:04:05,000 --> 00:04:07,000
+out the process ID -- that's what this is here.
+
+48
+00:04:07,000 --> 00:04:15,000
+Now, if we interact with it, it works the same as it did before all the way down to
+
+49
+00:04:15,000 --> 00:04:20,000
+if we do control D it will end, but we don't want to do that so let's run it again.
+
+50
+00:04:20,000 --> 00:04:25,000
+So now what we'd like to do is see if we can cause the SIG term event to happen.
+
+51
+00:04:25,000 --> 00:04:29,000
+So to do that what we're going to do is actually do is go to another terminal window
+
+52
+00:04:29,000 --> 00:04:34,000
+and issue a kill command to this process and see if we can trigger that.
+
+53
+00:04:34,000 --> 00:04:42,000
+So this is process 10200 and so if we go here (typing)
+
+54
+00:04:42,000 --> 00:04:48,000
+and from the UNIX command line issue the kill command dash term and put in the process ID
+
+55
+00:04:48,000 --> 00:04:54,000
+of our Node process, when we go back - so you can see here,
+
+56
+00:04:54,000 --> 00:04:55,000
+"Why are you trying to terminate me?"
+
+57
+00:04:55,000 --> 00:05:00,000
+So us running the kill command from the command line
+
+58
+00:05:00,000 --> 00:05:08,000
+and specifying dash term caused these SIG term event to be emitted from the "process" object
+
+59
+00:05:08,000 --> 00:05:12,000
+which then invoked our function and we printed this to standard error.
+
+60
+00:05:12,000 --> 00:05:15,000
+Now, the program itself is still running
+
+61
+00:05:15,000 --> 00:59:00,000
+so we can still interact with it and control D to end it.
+

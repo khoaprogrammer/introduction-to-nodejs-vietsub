@@ -1,0 +1,268 @@
+1
+00:00:01,000 --> 00:00:06,000
+For our first debugging example, we're going to pull up some code
+
+2
+00:00:06,000 --> 00:00:10,000
+that we looked at in the very first module.
+
+3
+00:00:10,000 --> 00:00:14,000
+We're going to look at our setTimeout example.
+
+4
+00:00:14,000 --> 00:00:20,000
+And so what we'll do here is add a breakpoint inside the named function
+
+5
+00:00:20,000 --> 00:00:24,000
+that gets invoked by a setTimeout.
+
+6
+00:00:24,000 --> 00:00:30,000
+So we'll simply click here to add a breakpoint to line two.
+
+7
+00:00:30,000 --> 00:00:36,000
+And when you're running a program in Cloud9 and you want to run it in debug mode,
+
+8
+00:00:36,000 --> 00:00:40,000
+you can come up here and choose run in debug mode.
+
+9
+00:00:40,000 --> 00:00:46,000
+And so now when we click the green star button, it will be in debug mode.
+
+10
+00:00:46,000 --> 00:00:51,000
+So let's run this.
+
+11
+00:00:51,000 --> 00:00:54,000
+So here we can see that running was printed to the console,
+
+12
+00:00:54,000 --> 00:01:01,000
+which is our console.log statement here, and then after 200 milliseconds,
+
+13
+00:01:01,000 --> 00:01:05,000
+when the handleTimeout function was invoked,
+
+14
+00:01:05,000 --> 00:01:10,000
+our breakpoint was triggered on console.log, and it stopped.
+
+15
+00:01:10,000 --> 00:01:18,000
+And so here you can see, if we run our mouse over the code we can inspect certain variables,
+
+16
+00:01:18,000 --> 00:01:23,000
+and we now have this panel available to us over here with some debugging functions.
+
+17
+00:01:23,000 --> 00:01:31,000
+And so here are our resume, step over, into, and out options, as well as the call stack,
+
+18
+00:01:31,000 --> 00:01:37,000
+which this program doesn't have much going on, so the call stack is fairly small.
+
+19
+00:01:37,000 --> 00:01:46,000
+And we can interact with the code or view the variables or the breakpoints.
+
+20
+00:01:46,000 --> 00:01:49,000
+I only have the one breakpoint in my code right now.
+
+21
+00:01:49,000 --> 00:01:53,000
+So if we go back up and continue,
+
+22
+00:01:53,000 --> 00:02:01,000
+then the console.log statement executes, and the program is done.
+
+23
+00:02:01,000 --> 00:02:06,000
+Now let's pull up another one of our previous examples, a more complicated one,
+
+24
+00:02:06,000 --> 00:02:10,000
+and look at the debugging functions we can use with that application.
+
+25
+00:02:10,000 --> 00:02:15,000
+So this is our WebSockets example from Module 5.
+
+26
+00:02:15,000 --> 00:02:21,000
+Here we're going to scroll down and add a breakpoint whenever we log
+
+27
+00:02:21,000 --> 00:02:27,000
+to the console upon receiving an event that something was submitted from the browser.
+
+28
+00:02:27,000 --> 00:02:37,000
+So let's put a breakpoint there and we'll run this once again in debug mode.
+
+29
+00:02:37,000 --> 00:02:42,000
+And we'll launch our web page.
+
+30
+00:02:42,000 --> 00:02:45,000
+There's our timer data being updated.
+
+31
+00:02:45,000 --> 00:02:47,000
+Now let's submit something.
+
+32
+00:02:47,000 --> 00:02:52,000
+( Typing on Keyboard )
+
+33
+00:02:52,000 --> 00:02:54,000
+So now that we've submitted it, let's go back to the server.
+
+34
+00:02:54,000 --> 00:02:57,000
+Our breakpoint was triggered and it has stopped.
+
+35
+00:02:57,000 --> 00:03:00,000
+And we have the same options here as before.
+
+36
+00:03:00,000 --> 00:03:05,000
+We have a lot more going on in our call stack this time.
+
+37
+00:03:05,000 --> 00:03:06,000
+And we have our variables.
+
+38
+00:03:06,000 --> 00:03:14,000
+Now, here is the variable data set to this is a test, and that is this variable right here.
+
+39
+00:03:14,000 --> 00:03:22,000
+In fact, if we come up here, simply by running your mouse over it, you can see the value.
+
+40
+00:03:22,000 --> 00:03:27,000
+This is what we typed in in the web browser, and it's available to be inspected here.
+
+41
+00:03:27,000 --> 00:03:29,000
+And it stopped.
+
+42
+00:03:29,000 --> 00:03:35,000
+Now, if we just resume, and then we look down in the (typing sounds) --
+
+43
+00:03:35,000 --> 00:03:42,000
+you'll see "submitted this is a test" in the output.
+
+44
+00:03:42,000 --> 00:03:45,000
+That is an example of debugging just on the server side.
+
+45
+00:03:45,000 --> 00:03:49,000
+But now since we're running in Chrome, we actually have access
+
+46
+00:03:49,000 --> 00:03:53,000
+to some very nice debugging capabilities on the client side, as well.
+
+47
+00:03:53,000 --> 00:03:57,000
+So let's take a look at using both of those together.
+
+48
+00:03:57,000 --> 00:04:01,000
+So now we're going to leave our breakpoint where it is on the server side,
+
+49
+00:04:01,000 --> 00:04:05,000
+and let's go take a look at the client side.
+
+50
+00:04:05,000 --> 00:04:10,000
+So if we load up the Chrome developer tools,
+
+51
+00:04:10,000 --> 00:04:16,000
+we can see that this is the HTML and JavaScript of our web page.
+
+52
+00:04:16,000 --> 00:04:20,000
+And here I can actually add a breakpoint as well on the client side.
+
+53
+00:04:20,000 --> 00:04:26,000
+So what I'd like to do is add a breakpoint on the client side before we emit the submit event.
+
+54
+00:04:26,000 --> 00:04:30,000
+So let's click here to add a breakpoint here.
+
+55
+00:04:30,000 --> 00:04:34,000
+And so now, as our timer continues to update, let's go and enter a new piece
+
+56
+00:04:34,000 --> 00:04:41,000
+of information here (typing sounds) and click submit.
+
+57
+00:04:41,000 --> 00:04:44,000
+Okay, now you can see that we've triggered the breakpoint
+
+58
+00:04:44,000 --> 00:04:49,000
+in the browser right before we emit the data to the server.
+
+59
+00:04:49,000 --> 00:04:55,000
+The server side is still running, but the browser side has paused right on the emit.
+
+60
+00:04:55,000 --> 00:05:03,000
+If we want to continue through this breakpoint, we can come up here, but now if we go back
+
+61
+00:05:03,000 --> 00:05:08,000
+to our server, now we've tripped our breakpoint on the server, which was on the receipt
+
+62
+00:05:08,000 --> 00:05:13,000
+of that submit event that we just emitted on the browser.
+
+63
+00:05:13,000 --> 00:05:15,000
+And this looks like what we saw before,
+
+64
+00:05:15,000 --> 00:05:22,000
+so if we resume here we'll see our submitted a second test was written to the output.
+
+65
+00:05:22,000 --> 00:05:28,000
+So this is a demonstration of how you can use the server side debugging capabilities
+
+66
+00:05:28,000 --> 00:05:35,000
+of Cloud9, alongside the client side debugging capabilities of the Chrome web browser
+
+67
+00:05:35,000 --> 00:59:00,000
+to provide a full featured debugging environment.
+

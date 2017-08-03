@@ -1,0 +1,112 @@
+1
+00:00:01,000 --> 00:00:04,000
+Paul O'Fallon: Hello, my name is Paul O'Fallon, and I'd like to welcome you
+
+2
+00:00:04,000 --> 00:00:11,000
+to the course, An Introduction to Node.js, Module 6, Testing and Debugging.
+
+3
+00:00:11,000 --> 00:00:18,000
+In this module, we'll discuss basic unit testing using Node's built in "assert" module,
+
+4
+00:00:18,000 --> 00:00:25,000
+and quickly move on to more advanced testing with the Mocha test framework and should.js.
+
+5
+00:00:25,000 --> 00:00:33,000
+And we'll wrap up by using the Cloud9 IDE to debug Node.js applications.
+
+6
+00:00:33,000 --> 00:00:36,000
+So let's get started.
+
+7
+00:00:36,000 --> 00:00:42,000
+"Assert" is a module that comes with Node, but must be required by your application.
+
+8
+00:00:42,000 --> 00:00:47,000
+It provides functions to perform a number of tests or assertions in your code.
+
+9
+00:00:47,000 --> 00:00:56,000
+For example, you can test for equality or inequality between expected and actual values.
+
+10
+00:00:56,000 --> 00:00:59,000
+You can test whether a block of code does or does not throw an exception.
+
+11
+00:00:59,000 --> 00:01:05,000
+You can test to the truthiness of a value.
+
+12
+00:01:05,000 --> 00:01:10,000
+Because of Node's conventions on the placement of the error parameter in a callback,
+
+13
+00:01:10,000 --> 00:01:17,000
+there is also special support for testing whether an error was passed to a callback.
+
+14
+00:01:17,000 --> 00:01:23,000
+And each of these assertions can contain a message to output when the assertion fails.
+
+15
+00:01:23,000 --> 00:01:29,000
+When testing for equality, the "assert" module provides for three different types of equality.
+
+16
+00:01:29,000 --> 00:01:32,000
+The first is simply the equal function.
+
+17
+00:01:32,000 --> 00:01:35,000
+This is a shallow coercive test for equality,
+
+18
+00:01:35,000 --> 00:01:41,000
+and is equivalent to using the double equal sign in JavaScript code.
+
+19
+00:01:41,000 --> 00:01:46,000
+The second is strict equal, which, as the name indicates, is strict equality,
+
+20
+00:01:46,000 --> 00:01:50,000
+the equivalent of a triple equal sign in JavaScript.
+
+21
+00:01:50,000 --> 00:01:56,000
+The third and final type of equality provided by "assert" is deep equal.
+
+22
+00:01:56,000 --> 00:02:01,000
+This allows you to test the equality of more complex data types.
+
+23
+00:02:01,000 --> 00:02:04,000
+In this case, identical values are equal,
+
+24
+00:02:04,000 --> 00:02:09,000
+and other values that are not objects are evaluated with coercive equality.
+
+25
+00:02:09,000 --> 00:02:14,000
+Date objects are considered equal if they contain the same date and time.
+
+26
+00:02:14,000 --> 00:02:19,000
+And other objects, including arrays, are considered equal if they have the same number
+
+27
+00:02:19,000 --> 00:02:25,000
+of owned properties, equivalent values for every key, and an identical prototype.
+
+28
+00:02:25,000 --> 00:59:00,000
+Let's take a look of some examples of using "assert" to unit test our Node.js code.
+

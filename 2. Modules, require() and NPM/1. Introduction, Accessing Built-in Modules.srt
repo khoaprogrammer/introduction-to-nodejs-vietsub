@@ -1,0 +1,140 @@
+1
+00:00:00,000 --> 00:00:04,000
+Paul O'Fallon: Hello, my name is Paul O'Fallon and I'd like to welcome you
+
+2
+00:00:04,000 --> 00:00:11,000
+to the course, An Introduction to Node.js Module 2, Modules require an NPM.
+
+3
+00:00:11,000 --> 00:00:20,000
+In this module we're going to cover how to include Node modules in your application.
+
+4
+00:00:20,000 --> 00:00:26,000
+We'll then look at the three most common sources of Node modules and we'll wrap
+
+5
+00:00:26,000 --> 00:00:30,000
+up with a discussion on how to create and publish your own Node modules.
+
+6
+00:00:30,000 --> 00:00:32,000
+So let's get started.
+
+7
+00:00:32,000 --> 00:00:38,000
+Modules are the way to bring external functionality to your Node application.
+
+8
+00:00:38,000 --> 00:00:45,000
+The require function loads a module and assigns it to a variable for your application to use.
+
+9
+00:00:45,000 --> 00:00:48,000
+Modules make their functionality available
+
+10
+00:00:48,000 --> 00:00:52,000
+by explicitly exporting it for use in other applications.
+
+11
+00:00:52,000 --> 00:01:01,000
+A module can export specific variables and these variables can also be functions.
+
+12
+00:01:01,000 --> 00:01:07,000
+Sometimes a module may export an object which you can instantiate in your code.
+
+13
+00:01:07,000 --> 00:01:11,000
+Here too, you'll notice an informal naming convention.
+
+14
+00:01:11,000 --> 00:01:15,000
+A module which simply exports a set of variables is often assigned
+
+15
+00:01:15,000 --> 00:01:21,000
+to a camel case variable starting with a lowercase letter; foo in this example.
+
+16
+00:01:21,000 --> 00:01:23,000
+However, a module which is designed
+
+17
+00:01:23,000 --> 00:01:27,000
+to be instantiated will be assigned a camel case variable
+
+18
+00:01:27,000 --> 00:01:31,000
+with an initial capital; Bar in this example.
+
+19
+00:01:31,000 --> 00:01:35,000
+Finally, there may be cases where you only need a single variable
+
+20
+00:01:35,000 --> 00:01:38,000
+or function out of a large module.
+
+21
+00:01:38,000 --> 00:01:40,000
+You can import just the one function you need
+
+22
+00:01:40,000 --> 00:01:47,000
+by specifying the variable name immediately after the require function call.
+
+23
+00:01:47,000 --> 00:01:50,000
+There are three main sources of modules that you can bring
+
+24
+00:01:50,000 --> 00:01:53,000
+into your project with the require function.
+
+25
+00:01:53,000 --> 00:01:55,000
+The first is Node's built-in modules.
+
+26
+00:01:55,000 --> 00:02:00,000
+While Node provides a few functions in its global name space such as set timeout
+
+27
+00:02:00,000 --> 00:02:05,000
+and set interval, there are many modules that shift with Node that must be explicitly included
+
+28
+00:02:05,000 --> 00:02:09,000
+in your project in order to be used.
+
+29
+00:02:09,000 --> 00:02:13,000
+These module names passed to the require function are simple string identifiers,
+
+30
+00:02:13,000 --> 00:02:16,000
+such as fs here.
+
+31
+00:02:16,000 --> 00:02:24,000
+Some of the built-in Node modules include fs for accessing the file system, http for creating
+
+32
+00:02:24,000 --> 00:02:30,000
+and responding to http requests, crypto for performing cryptographic functions
+
+33
+00:02:30,000 --> 00:02:34,000
+and os for accessing attributes of the underlying operating system.
+
+34
+00:02:34,000 --> 00:02:37,000
+Let's take a look at some examples of using require
+
+35
+00:02:37,000 --> 00:59:00,000
+to access Node's built-in modules (silence).
+

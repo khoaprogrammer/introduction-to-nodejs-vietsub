@@ -1,0 +1,388 @@
+1
+00:00:00,000 --> 00:00:03,000
+So now we're going to take a look at installing "Node" on an
+
+2
+00:00:03,000 --> 00:00:07,000
+"Aboon 2" "Linux" instance using "NVM".
+
+3
+00:00:07,000 --> 00:00:14,000
+Now, as I mentioned, the absolute easiest way to install "Node" on "Linux" is just
+
+4
+00:00:14,000 --> 00:00:17,000
+by using the version that comes with the "Package Manager".
+
+5
+00:00:17,000 --> 00:00:20,000
+So let's take a look real quick at how we would do that.
+
+6
+00:00:20,000 --> 00:00:22,000
+First, let's search for that package.
+
+7
+00:00:22,000 --> 00:00:28,000
+( Typing on Keyboard )
+
+8
+00:00:28,000 --> 00:00:33,000
+And here you can see that there are several "Node.js" packages that we could install,
+
+9
+00:00:33,000 --> 00:00:36,000
+so if we wanted to install "Node", we could simply install the
+
+10
+00:00:36,000 --> 00:00:40,000
+"Node.js" package, and it would be available here.
+
+11
+00:00:40,000 --> 00:00:46,000
+Now if you want to manage multiple versions, or if you want to stay more current
+
+12
+00:00:46,000 --> 00:00:52,000
+with the latest version of "Node", you can use a tool like "NVM" to manage those yourself.
+
+13
+00:00:52,000 --> 00:00:58,000
+So let's look at doing that, so, as I mentioned, you'll want to first clone the repository
+
+14
+00:00:58,000 --> 00:01:02,000
+of "NVM" from "GitHub", and to do that you'll need to have the
+
+15
+00:01:02,000 --> 00:01:06,000
+"Git" client installed on your machine.
+
+16
+00:01:06,000 --> 00:01:09,000
+And when you do, you'll run a command like this.
+
+17
+00:01:09,000 --> 00:01:16,000
+So here we're going to clone it into an "NVM" directory.
+
+18
+00:01:16,000 --> 00:01:20,000
+Okay, so now we have it cloned, if we look in there (typing
+
+19
+00:01:20,000 --> 00:01:21,000
+on keyboard), we have some shell scripts.
+
+20
+00:01:21,000 --> 00:01:25,000
+And before we actually have the command available to use,
+
+21
+00:01:25,000 --> 00:01:28,000
+we need to source the appropriate shell script so let's do that.
+
+22
+00:01:28,000 --> 00:01:32,000
+( Typing on Keyboard )
+
+23
+00:01:32,000 --> 00:01:35,000
+Okay, now "NVM" should work.
+
+24
+00:01:35,000 --> 00:01:39,000
+Yes, and there are all the commands that are available with "NVM".
+
+25
+00:01:39,000 --> 00:01:45,000
+So if we do "NVM LS", you'll see we don't have any versions installed yet,
+
+26
+00:01:45,000 --> 00:01:47,000
+so let's actually install a version.
+
+27
+00:01:47,000 --> 00:01:53,000
+( Typing on Keyboard )
+
+28
+00:01:53,000 --> 00:01:56,000
+You'll see that install went very quickly,
+
+29
+00:01:56,000 --> 00:02:01,000
+and that's because for the more recent versions they actually have the binary for a lot
+
+30
+00:02:01,000 --> 00:02:04,000
+of platforms available to download, so I didn't even have to compile it;
+
+31
+00:02:04,000 --> 00:02:06,000
+all I had to do is just download it.
+
+32
+00:02:06,000 --> 00:02:11,000
+And that makes it really easy to install multiple versions,
+
+33
+00:02:11,000 --> 00:02:14,000
+particularly when they are the more recent versions.
+
+34
+00:02:14,000 --> 00:02:18,000
+And so if I do "NVM LS", now you'll see I have two versions,
+
+35
+00:02:18,000 --> 00:02:23,000
+and I'm currently using the last one I installed, which was 8.15.
+
+36
+00:02:23,000 --> 00:02:28,000
+So if I want to install an older version, let's say a 0.6 version, of "Node",
+
+37
+00:02:28,000 --> 00:02:31,000
+for that I'll have to compile it.
+
+38
+00:02:31,000 --> 00:02:32,000
+In order to do that on "Linux", I'll have
+
+39
+00:02:32,000 --> 00:02:35,000
+to have the appropriate compilers and what not installed.
+
+40
+00:02:35,000 --> 00:02:38,000
+It's much like you would expect to build any "C++" project.
+
+41
+00:02:38,000 --> 00:02:44,000
+( Typing on Keyboard )
+
+42
+00:02:44,000 --> 00:02:47,000
+So even though it is downloading and compiling, "NVM" takes care of all of that for you as long
+
+43
+00:02:47,000 --> 00:02:50,000
+as the appropriate packages are installed on your system.
+
+44
+00:02:50,000 --> 00:02:56,000
+( Silence )
+
+45
+00:02:56,000 --> 00:03:00,000
+So now this build process is going to go on for quite some time.
+
+46
+00:03:00,000 --> 00:03:03,000
+Okay, so the compilation is done.
+
+47
+00:03:03,000 --> 00:03:08,000
+"NVM" is telling us that we're now using "Node" version 0.6.9.
+
+48
+00:03:08,000 --> 00:03:12,000
+So now an "NVM LS" will show us three versions,
+
+49
+00:03:12,000 --> 00:03:15,000
+where our current one again is the last one we installed.
+
+50
+00:03:15,000 --> 00:03:18,000
+If I want to switch between versions, well, let's just --
+
+51
+00:03:18,000 --> 00:03:20,000
+let's verify that what we see is true.
+
+52
+00:03:20,000 --> 00:03:23,000
+So if I do "Node-V", 0.6.9.
+
+53
+00:03:23,000 --> 00:03:31,000
+Now to switch versions of "Node", I can simply go to "NVM Use 0.8.15",
+
+54
+00:03:31,000 --> 00:03:35,000
+and if I do "Node-View now", you'll see 0.8.15.
+
+55
+00:03:35,000 --> 00:03:37,000
+So I can switch that easily.
+
+56
+00:03:37,000 --> 00:03:40,000
+But if you're like me, 99% of the time you're going to be wanting
+
+57
+00:03:40,000 --> 00:03:42,000
+to use the same version of "Node".
+
+58
+00:03:42,000 --> 00:03:44,000
+You don't necessarily want to have to set it every time.
+
+59
+00:03:44,000 --> 00:03:50,000
+Well, "NVM" makes that easy by giving you the ability to alias to a default version.
+
+60
+00:03:50,000 --> 00:03:54,000
+And so by doing that, what that means is, whenever "NVM" is sourced,
+
+61
+00:03:54,000 --> 00:03:56,000
+it will give you that version by default.
+
+62
+00:03:56,000 --> 00:04:01,000
+Now you can use aliases for more than this, but this is really the case where I use aliases.
+
+63
+00:04:01,000 --> 00:04:13,000
+So if I type "NVM Alias Default Version 0.8.15", now the default is 8.15.
+
+64
+00:04:13,000 --> 00:04:18,000
+So now that we have "Node" installed, let's actually run it (typing on keyboard).
+
+65
+00:04:18,000 --> 00:04:22,000
+So if you execute "Node" without any script name,
+
+66
+00:04:22,000 --> 00:04:26,000
+it will dump you into a "Read eval print loop", or "REPL", where you can interact
+
+67
+00:04:26,000 --> 00:04:28,000
+with "Node" from the "Command Prompt".
+
+68
+00:04:28,000 --> 00:04:37,000
+Obviously, the most trivial example would be to just do a "Console.log" (typing
+
+69
+00:04:37,000 --> 00:04:40,000
+on keyboard), and it prints to the console.
+
+70
+00:04:40,000 --> 00:04:45,000
+So that's one way to play around with it for very simple experiments with "Node".
+
+71
+00:04:45,000 --> 00:04:49,000
+So let's create a file, and give ourselves something a little more substantial (typing
+
+72
+00:04:49,000 --> 00:04:49,000
+on keyboard).
+
+73
+00:04:49,000 --> 00:04:55,000
+We're going to try to set "Time-out", and so let's just try one
+
+74
+00:04:55,000 --> 00:05:03,000
+of those here (typing on keyboard).
+
+75
+00:05:03,000 --> 00:05:09,000
+So we're going to call -- have "Set Time-out" call a function (typing on keyboard),
+
+76
+00:05:09,000 --> 00:05:21,000
+and print the word "world" (typing on keyboard) after one second.
+
+77
+00:05:21,000 --> 00:05:25,000
+But we're going to have it immediately print the word "hello",
+
+78
+00:05:25,000 --> 00:05:32,000
+and so let's try that (typing on keyboard).
+
+79
+00:05:32,000 --> 00:05:39,000
+And so this script was almost identical to one that Ryan Dahl did in his 2009 demo of "Node".
+
+80
+00:05:39,000 --> 00:05:42,000
+Okay, so now let's try to run an example
+
+81
+00:05:42,000 --> 00:05:45,000
+that will do a little more than simply set a time-out.
+
+82
+00:05:45,000 --> 00:05:49,000
+Let's try to spin up a very simple HTTP server.
+
+83
+00:05:49,000 --> 00:05:54,000
+Now on the "Node" home page, you'll see the code for a very simple web server
+
+84
+00:05:54,000 --> 00:05:56,000
+that just prints out "Hello, world."
+
+85
+00:05:56,000 --> 00:06:03,000
+So what I've done is I've copied that and pasted it into a script called "Server JSConf.eu".
+
+86
+00:06:03,000 --> 00:06:07,000
+Now the only thing I've changed is I've taken off the IP address
+
+87
+00:06:07,000 --> 00:06:09,000
+and left just the port number.
+
+88
+00:06:09,000 --> 00:06:13,000
+We'll go into more in a later module about what this is really doing,
+
+89
+00:06:13,000 --> 00:06:17,000
+but just take it for granted that we're creating a web server
+
+90
+00:06:17,000 --> 00:06:24,000
+and we are writing back a text-plain header and sending the text "Hello, World."
+
+91
+00:06:24,000 --> 00:06:28,000
+And this web server is going to listen on port 1337, and it's also going
+
+92
+00:06:28,000 --> 00:06:30,000
+to print something out to the console.
+
+93
+00:06:30,000 --> 00:06:40,000
+So if we run that (typing on keyboard), and we go to the host name of this VM
+
+94
+00:06:40,000 --> 00:06:44,000
+at that address, and hit "Return", let's see.
+
+95
+00:06:44,000 --> 00:06:47,000
+And you'll see we get "Hello, World."
+
+96
+00:06:47,000 --> 00:06:51,000
+So it's printing that out, very, very simple example, but I mean,
+
+97
+00:06:51,000 --> 00:59:00,000
+it's a running web server in a few lines of code.
+

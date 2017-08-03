@@ -1,0 +1,132 @@
+1
+00:00:00,000 --> 00:00:05,000
+So now we're going to take a look at a couple of examples of using buffers.
+
+2
+00:00:05,000 --> 00:00:10,000
+But before we go through this code I want to pop back to the file system examples
+
+3
+00:00:10,000 --> 00:00:15,000
+from the last demo and point out where buffers were showing up.
+
+4
+00:00:15,000 --> 00:00:18,000
+Either in the asynchronous or the synchronous example,
+
+5
+00:00:18,000 --> 00:00:25,000
+you'll notice that when we read the file from disc we take the value that is returned
+
+6
+00:00:25,000 --> 00:00:30,000
+by the read file sync function and we call a two string on it.
+
+7
+00:00:30,000 --> 00:00:34,000
+So that means what we're getting back is actually not a string by default
+
+8
+00:00:34,000 --> 00:00:38,000
+and so we're calling two string on the instance of the buffer object
+
+9
+00:00:38,000 --> 00:00:41,000
+to get a string value to print out.
+
+10
+00:00:41,000 --> 00:00:43,000
+This is an example of where you're getting a buffer
+
+11
+00:00:43,000 --> 00:00:46,000
+and you need to be able to deal with buffers.
+
+12
+00:00:46,000 --> 00:00:53,000
+A couple of canned examples here where we are instantiating a new buffer and passing
+
+13
+00:00:53,000 --> 00:00:58,000
+in the string hello, this gives us a buffer B. If we want to log it to the console just
+
+14
+00:00:58,000 --> 00:01:03,000
+like we saw in our file system example we'll convert it to a string.
+
+15
+00:01:03,000 --> 00:01:08,000
+We can also convert it to a base64 string by simply passing
+
+16
+00:01:08,000 --> 00:01:12,000
+in the encoding base64 in the two string function.
+
+17
+00:01:12,000 --> 00:01:15,000
+Because of what's returned from each of these function calls,
+
+18
+00:01:15,000 --> 00:01:16,000
+you can actually chain this together.
+
+19
+00:01:16,000 --> 00:01:21,000
+So here you see I'm actually creating a buffer passing in world
+
+20
+00:01:21,000 --> 00:01:23,000
+and then immediately converting it to base64.
+
+21
+00:01:23,000 --> 00:01:27,000
+So if all you really wanted to do is get the word world
+
+22
+00:01:27,000 --> 00:01:32,000
+as a base64 encoded string you could do all that in one line.
+
+23
+00:01:32,000 --> 00:01:35,000
+So something else you can do very efficiently with buffers is call
+
+24
+00:01:35,000 --> 00:01:37,000
+out certain subsections of a buffer.
+
+25
+00:01:37,000 --> 00:01:41,000
+So in this case we're going to pull out the first few characters
+
+26
+00:01:41,000 --> 00:01:44,000
+of this buffer and print that to the console.
+
+27
+00:01:44,000 --> 00:01:49,000
+So now let's run this and see what we get.
+
+28
+00:01:49,000 --> 00:01:57,000
+So looking at our output we see first, we see hello which is our buffer we instantiated here
+
+29
+00:01:57,000 --> 00:02:01,000
+with the string hello and then converted back to a string.
+
+30
+00:02:01,000 --> 00:02:03,000
+And the next console dot log output is
+
+31
+00:02:03,000 --> 00:02:07,000
+where we log the base64 encoded version of hello which is here.
+
+32
+00:02:07,000 --> 00:02:11,000
+Here we log to the console the two string
+
+33
+00:02:11,000 --> 00:59:00,000
+where we only wanted the first two characters which gave the H-E of hello.
+

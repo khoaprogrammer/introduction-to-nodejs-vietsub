@@ -1,0 +1,32 @@
+1
+00:00:01,000 --> 00:00:01,000
+Paul O'Fallon: Hello.
+
+2
+00:00:01,000 --> 00:00:05,000
+My name is Paul O'Fallon, and I'd like to welcome you to the course,
+
+3
+00:00:05,000 --> 00:00:12,000
+An Introduction to Node.js, Module 3, Events and Streams.
+
+4
+00:00:12,000 --> 00:00:18,000
+In this module we'll discuss the differences between callbacks and events.
+
+5
+00:00:18,000 --> 00:00:22,000
+We'll look at Node's EventEmmiter class as well as a couple
+
+6
+00:00:22,000 --> 00:00:26,000
+of patterns for using Event Emitters.
+
+7
+00:00:26,000 --> 00:00:32,000
+We'll then move on to Readable and WriteableStreams and piping between streams.
+
+8
+00:00:32,000 --> 00:59:00,000
+So let's get started.
+

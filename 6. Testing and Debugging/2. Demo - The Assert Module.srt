@@ -1,0 +1,216 @@
+1
+00:00:01,000 --> 00:00:06,000
+(Pause) So now we're going to take a look at an example of using "assert"
+
+2
+00:00:06,000 --> 00:00:13,000
+to unit test some Node.js code, and to do that we're going to bring up our mathfun module,
+
+3
+00:00:13,000 --> 00:00:17,000
+that we created in Module 2 of this course.
+
+4
+00:00:17,000 --> 00:00:22,000
+And in fact we've extended it a little bit to include a synchronous version
+
+5
+00:00:22,000 --> 00:00:27,000
+of the same evenDoubler function that we used back then.
+
+6
+00:00:27,000 --> 00:00:33,000
+So here in our mathfun.js file, you'll see the evenDoubler function, which I've folded here,
+
+7
+00:00:33,000 --> 00:00:40,000
+but it's the exact same code from Module 2, but we've added a synchronous version
+
+8
+00:00:40,000 --> 00:00:46,000
+of this function called evenDoublerSync, which has the same rules as far
+
+9
+00:00:46,000 --> 00:00:51,000
+as requiring an even number, but instead of invoking a callback,
+
+10
+00:00:51,000 --> 00:00:57,000
+it returns the value if it is past an even number.
+
+11
+00:00:57,000 --> 00:01:01,000
+And rather than passing an error to a callback in case
+
+12
+00:01:01,000 --> 00:01:04,000
+of an odd number, it throws an exception.
+
+13
+00:01:04,000 --> 00:01:09,000
+In this case it throws an exception with a new error with the text odd input.
+
+14
+00:01:09,000 --> 00:01:18,000
+I've added them both to module exports here, so they're both available to my code.
+
+15
+00:01:18,000 --> 00:01:21,000
+So now I'm going to back to the unit test for this code.
+
+16
+00:01:21,000 --> 00:01:27,000
+We see here that I have required the "assert" module, and I've required my mathfun script
+
+17
+00:01:27,000 --> 00:01:31,000
+in the same directory, and assigned it to the variable "fun".
+
+18
+00:01:31,000 --> 00:01:39,000
+So now the test code is that I am running the synchronous version of evenDoubler passing it
+
+19
+00:01:39,000 --> 00:01:43,000
+in a two, and asserting that that will be equal to four.
+
+20
+00:01:43,000 --> 00:01:48,000
+And then to test, what will happen if I pass in an odd number to the synchronous function?
+
+21
+00:01:48,000 --> 00:01:53,000
+I'm asserting that if I pass in an odd number to evenDoublerSync
+
+22
+00:01:53,000 --> 00:01:55,000
+that that will throw an exception.
+
+23
+00:01:55,000 --> 00:02:01,000
+And then this extra parameter here, I can actually specify a regular expression to match
+
+24
+00:02:01,000 --> 00:02:04,000
+to the text of the error that's returned.
+
+25
+00:02:04,000 --> 00:02:09,000
+So if you remember from the mathfun file, I'm returning odd input.
+
+26
+00:02:09,000 --> 00:02:14,000
+So what I'm actually checking for here is that the exception
+
+27
+00:02:14,000 --> 00:02:17,000
+that is thrown should have the word odd in it.
+
+28
+00:02:17,000 --> 00:02:22,000
+So to test the asynchronous evenDoubler function, I'm invoking it with a value of two,
+
+29
+00:02:22,000 --> 00:02:28,000
+passing it an anonymous callback, and then checking to see if an error was returned.
+
+30
+00:02:28,000 --> 00:02:33,000
+And then I'm also asserting that the results are indeed equal to four as they should be.
+
+31
+00:02:33,000 --> 00:02:38,000
+And then in this case, I've actually supplied an extra message to the "assert" function
+
+32
+00:02:38,000 --> 00:02:42,000
+that this is what it should print out if this test fails.
+
+33
+00:02:42,000 --> 00:02:47,000
+And lastly, I'm testing the asynchronous function when I pass it in an odd value.
+
+34
+00:02:47,000 --> 00:02:52,000
+So in this case, I do expect the error to come back not null,
+
+35
+00:02:52,000 --> 00:02:55,000
+so I'm asserting that I'm going to get an error back.
+
+36
+00:02:55,000 --> 00:02:58,000
+So let's run this code and see what we get.
+
+37
+00:02:58,000 --> 00:03:06,000
+(Pause) As you can see, I didn't get any errors, but I really didn't get any output either.
+
+38
+00:03:06,000 --> 00:03:08,000
+So the "assert" module is really just
+
+39
+00:03:08,000 --> 00:03:11,000
+for testing your output and for exceptions and whatnot.
+
+40
+00:03:11,000 --> 00:03:16,000
+It doesn't really give you any useful feedback, particularly if everything passes.
+
+41
+00:03:16,000 --> 00:03:19,000
+So let's make some of these tests fail.
+
+42
+00:03:19,000 --> 00:03:24,000
+Why don't we go here and change the string that we're matching
+
+43
+00:03:24,000 --> 00:03:30,000
+on for the exception that's thrown, and let's run this.
+
+44
+00:03:30,000 --> 00:03:35,000
+(Pause) So you can see I got a rather messy error message, but what it's telling me is
+
+45
+00:03:35,000 --> 00:03:41,000
+that odd input is what the error contained, and that is not what I was testing for;
+
+46
+00:03:41,000 --> 00:03:46,000
+I was looking for odd two, and that was not there.
+
+47
+00:03:46,000 --> 00:03:48,000
+So let's fix this one.
+
+48
+00:03:48,000 --> 00:03:51,000
+And now let's go down and make this one fail.
+
+49
+00:03:51,000 --> 00:03:55,000
+So now we're going to say that when I call evenDoubler with a value of two,
+
+50
+00:03:55,000 --> 00:03:59,000
+I should get five back, which we know is not right, but that's going to fail.
+
+51
+00:03:59,000 --> 00:04:06,000
+So if we run this, here you'll see that we did get our message, evenDoubler failed
+
+52
+00:04:06,000 --> 00:04:09,000
+on an even number, so that's our message here.
+
+53
+00:04:09,000 --> 00:04:12,000
+It's kind of in the middle of you know some extra stuff,
+
+54
+00:04:12,000 --> 00:59:00,000
+this output is certainly decipherable, but it's not very friendly, but it is there.
+

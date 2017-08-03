@@ -1,0 +1,56 @@
+1
+00:00:00,000 --> 00:00:08,000
+There are other ways to debug Node applications in cases where you are not using the Cloud9 IDE.
+
+2
+00:00:08,000 --> 00:00:12,000
+There is a Node inspector module, which provides browser based debugging
+
+3
+00:00:12,000 --> 00:00:15,000
+of Node.js debugging applications.
+
+4
+00:00:15,000 --> 00:00:22,000
+I touch on this option in another Pluralsight course, Node on Windows in Azure.
+
+5
+00:00:22,000 --> 00:00:27,000
+So to conclude, in this module, we started with an overview of Node's built
+
+6
+00:00:27,000 --> 00:00:34,000
+in "assert" module used for writing unit tests of Node.js code.
+
+7
+00:00:34,000 --> 00:00:37,000
+We then moved on to a more useful and feature rich method
+
+8
+00:00:37,000 --> 00:00:43,000
+of writing tests using Mocha and should.js.
+
+9
+00:00:43,000 --> 00:00:47,000
+We then wrapped up by debugging our Node applications using the features found
+
+10
+00:00:47,000 --> 00:00:50,000
+in the Cloud9 IDE.
+
+11
+00:00:50,000 --> 00:00:54,000
+I hope this module has been helpful in introducing you to the testing
+
+12
+00:00:54,000 --> 00:00:57,000
+and debugging features of Node.js.
+
+13
+00:00:57,000 --> 00:00:58,000
+Thank you.
+
+14
+00:00:58,000 --> 00:59:00,000
+( Silence )
+

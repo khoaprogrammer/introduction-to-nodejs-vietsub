@@ -1,0 +1,148 @@
+1
+00:00:01,000 --> 00:00:06,000
+So now we're going to take a look at using Node to run a simple web server.
+
+2
+00:00:06,000 --> 00:00:11,000
+Now, this will be a slight extension over what we looked at in our earlier modules
+
+3
+00:00:11,000 --> 00:00:16,000
+where we simply cut and paste the code from the Node.js homepage,
+
+4
+00:00:16,000 --> 00:00:19,000
+but we did use that for a starting point here.
+
+5
+00:00:19,000 --> 00:00:25,000
+We are requiring the HTTP module and then we're calling create server just like before,
+
+6
+00:00:25,000 --> 00:00:30,000
+and we're passing in a single function which will be invoked on each request.
+
+7
+00:00:30,000 --> 00:00:36,000
+And if you remember, this function is passed a request and a response.
+
+8
+00:00:36,000 --> 00:00:41,000
+Now, just like the example from the Node homepage, we're going to write out the header
+
+9
+00:00:41,000 --> 00:00:47,000
+of 200 for a status code of Okay, and then a content type of "text/plain."
+
+10
+00:00:47,000 --> 00:00:49,000
+But now we're going to do a little bit more.
+
+11
+00:00:49,000 --> 00:00:56,000
+If the URL in the request is "/file.txt," we're going to go to the file system,
+
+12
+00:00:56,000 --> 00:01:00,000
+and we're going to open a readable stream of that file
+
+13
+00:01:00,000 --> 00:01:02,000
+and we're going to pipe it to the response.
+
+14
+00:01:02,000 --> 00:01:06,000
+So if you remember, the response was a writeable stream, so we're simply going
+
+15
+00:01:06,000 --> 00:01:09,000
+to open a file and pipe it to the response.
+
+16
+00:01:09,000 --> 00:01:13,000
+Otherwise, we're going to call result.end Hello world.
+
+17
+00:01:13,000 --> 00:01:17,000
+And then rather than a server that's returned being stored as a variable here,
+
+18
+00:01:17,000 --> 00:01:20,000
+and then simply to turn around and call listen,
+
+19
+00:01:20,000 --> 00:01:23,000
+the listen is chained to the end of create server.
+
+20
+00:01:23,000 --> 00:01:27,000
+So we're creating a server and then for the server that's returned,
+
+21
+00:01:27,000 --> 00:01:32,000
+we're going to call listen and remember our variables for providing port and IP,
+
+22
+00:01:32,000 --> 00:01:37,000
+we've put those here and then a console.log to show that the server is running.
+
+23
+00:01:37,000 --> 00:01:42,000
+And just so we can double check what the value of /file.text is, let's take a look at that.
+
+24
+00:01:42,000 --> 00:01:45,000
+So this is a file being read from the file system and piped to this response.
+
+25
+00:01:45,000 --> 00:01:51,000
+Now, one more thing I want to point out real quick that may not be familiar to you
+
+26
+00:01:51,000 --> 00:01:54,000
+yet is this "underscoreunderscoredirname."
+
+27
+00:01:54,000 --> 00:02:00,000
+That is a variable that will tell you the directory that the current script is running in.
+
+28
+00:02:00,000 --> 00:02:06,000
+So in this case what I want to say is my server.js is running in this directory,
+
+29
+00:02:06,000 --> 00:02:09,000
+and I want to find /file.text in the same directory.
+
+30
+00:02:09,000 --> 00:02:16,000
+So let's run this and try a couple of different URLs.
+
+31
+00:02:16,000 --> 00:02:25,000
+So we're going to visit the URL here, (typing) and without anything added to the base URL,
+
+32
+00:02:25,000 --> 00:02:30,000
+we simply get "Hello world," just what we would expect because we didn't ask for /file.text
+
+33
+00:02:30,000 --> 00:02:33,000
+so we're just going to get "Hello world."
+
+34
+00:02:33,000 --> 00:02:40,000
+But now, let's ask for /file.text.
+
+35
+00:02:40,000 --> 00:02:47,000
+And now you can see here that we did get the contents of the file return to the browser.
+
+36
+00:02:47,000 --> 00:02:54,000
+And so this is a good example of using streams to go from a file system to a network
+
+37
+00:02:54,000 --> 00:59:00,000
+where we actually opened a file from disk and then simply piped it to the response.
+

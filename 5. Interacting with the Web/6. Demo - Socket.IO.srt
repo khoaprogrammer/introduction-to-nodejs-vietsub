@@ -1,0 +1,332 @@
+1
+00:00:00,000 --> 00:00:07,000
+So for the first part of our web socket example, we're going to go back
+
+2
+00:00:07,000 --> 00:00:10,000
+to our Linux VM that we used in Module 1.
+
+3
+00:00:10,000 --> 00:00:16,000
+And part of the reason for this is because Cloud9 does not support web sockets natively.
+
+4
+00:00:16,000 --> 00:00:21,000
+And so I wanted to show you this first in an environment that supports web sockets
+
+5
+00:00:21,000 --> 00:00:26,000
+and then we'll go back to Cloud9 and show you how to get it to work there.
+
+6
+00:00:26,000 --> 00:00:31,000
+But here in our Linux VM, let's go through the Node server side code
+
+7
+00:00:31,000 --> 00:00:33,000
+that will be using the web sockets.
+
+8
+00:00:33,000 --> 00:00:39,000
+We're starting off by requiring HTTP and Socket.IO and the file system.
+
+9
+00:00:39,000 --> 00:00:45,000
+Now, this example will be a little bit different than what we saw on the slides for Socket.IO
+
+10
+00:00:45,000 --> 00:00:51,000
+because this will have a web server and Socket.IO server combined.
+
+11
+00:00:51,000 --> 00:00:54,000
+Our slide only had a Socket.IO server.
+
+12
+00:00:54,000 --> 00:00:59,000
+Here, you'll see our HTTP create server function, but in this case instead
+
+13
+00:00:59,000 --> 00:01:04,000
+of passing an anonymous callback, we're passing a handler named function.
+
+14
+00:01:04,000 --> 00:01:09,000
+And handler, all it really does is says, "Regardless of what URL you give me,
+
+15
+00:01:09,000 --> 00:01:14,000
+I'm always going to give you back index.HTML"; so it doesn't even really look at the request,
+
+16
+00:01:14,000 --> 00:01:19,000
+it just simply opens up index.HTML and then returns it.
+
+17
+00:01:19,000 --> 00:01:25,000
+The server being returned from create server here restoring it in an app variable,
+
+18
+00:01:25,000 --> 00:01:30,000
+and passing that to Socket.IO.listen, so Socket.IO really adds itself to the server
+
+19
+00:01:30,000 --> 00:01:33,000
+that was created in HTTP create server.
+
+20
+00:01:33,000 --> 00:01:39,000
+So for the Socket.IO server, we're saying, "Whenever I receive a connection event,
+
+21
+00:01:39,000 --> 00:01:47,000
+meaning a browser connects to the server, I want you to set an interval every two seconds.
+
+22
+00:01:47,000 --> 00:01:52,000
+And every two seconds I want you to capture a current time stamp emitted to the log,
+
+23
+00:01:52,000 --> 00:01:57,000
+and then over the socket I want you to emit a timer event to the browser and I want you
+
+24
+00:01:57,000 --> 00:02:01,000
+to pass the time stamp that you just created to the browser."
+
+25
+00:02:01,000 --> 00:02:07,000
+And also, we want to listen for a submit event that comes from the browser,
+
+26
+00:02:07,000 --> 00:02:11,000
+and if we receive that we want to take that data and just log it to the console.
+
+27
+00:02:11,000 --> 00:02:17,000
+And then we're going to call app.listen for the create server that we created up here,
+
+28
+00:02:17,000 --> 00:02:23,000
+and this is what will serve the index.HTML page and then something to log to the console.
+
+29
+00:02:23,000 --> 00:02:27,000
+Now before we run this, let's take a look at what is in index.HTML
+
+30
+00:02:27,000 --> 00:02:31,000
+and will be returned to the browser.
+
+31
+00:02:31,000 --> 00:02:36,000
+(Typing) So here's a view source of the index.HTML page.
+
+32
+00:02:36,000 --> 00:02:41,000
+Here you'll see that onload we are making a connection to the server,
+
+33
+00:02:41,000 --> 00:02:46,000
+we are listening for the timer event and when we get the timer event,
+
+34
+00:02:46,000 --> 00:02:50,000
+we're going to update a portion of the HTML page to show the data
+
+35
+00:02:50,000 --> 00:02:54,000
+where the time stamp that came with the timer event.
+
+36
+00:02:54,000 --> 00:02:59,000
+And then in our submit data function which gets invoked whenever we click on the button
+
+37
+00:02:59,000 --> 00:03:03,000
+of the form on the page, we're going to get the input data and we're going
+
+38
+00:03:03,000 --> 00:03:08,000
+to generate a submit event and pass that data along with the event.
+
+39
+00:03:08,000 --> 00:03:13,000
+So here we are listening for a timer event and emitting a submit event.
+
+40
+00:03:13,000 --> 00:03:20,000
+And over on the server side, we are emitting a timer event and listening for a submit event.
+
+41
+00:03:20,000 --> 00:03:24,000
+That's kind of the symmetry that you get when doing this between Node
+
+42
+00:03:24,000 --> 00:03:27,000
+on a server and JavaScript in the browser.
+
+43
+00:03:27,000 --> 00:03:32,000
+Now that we've taken a look at it, let's run it and see what it does.
+
+44
+00:03:32,000 --> 00:03:38,000
+( Typing )
+
+45
+00:03:38,000 --> 00:03:40,000
+So here it tells us that Socket.IO has been started
+
+46
+00:03:40,000 --> 00:03:45,000
+and here is our console.log statement telling us the server is running.
+
+47
+00:03:45,000 --> 00:03:52,000
+So if we go to the test page and hit Refresh, the page has been loaded and now you can see
+
+48
+00:03:52,000 --> 00:03:56,000
+that we've begun receiving timer events from the server.
+
+49
+00:03:56,000 --> 00:04:01,000
+If we go back and look at the server logs, you can see this is the console.log we have inside
+
+50
+00:04:01,000 --> 00:04:05,000
+of that interval where we're logging to the console as well,
+
+51
+00:04:05,000 --> 00:04:10,000
+and so those timer events continue to be sent to the browser.
+
+52
+00:04:10,000 --> 00:04:12,000
+Now, if we want to type in something here
+
+53
+00:04:12,000 --> 00:04:16,000
+to generate the submit event on a server, we can do that.
+
+54
+00:04:16,000 --> 00:04:23,000
+So if we type in a string here and press "Submit" and then jump back to the server,
+
+55
+00:04:23,000 --> 00:04:28,000
+you'll see "Submitted colon qwerty" right here, which is the event
+
+56
+00:04:28,000 --> 00:04:31,000
+on the server triggered by the browser.
+
+57
+00:04:31,000 --> 00:04:35,000
+This is an example of the back and forth that you can achieve between a server
+
+58
+00:04:35,000 --> 00:04:40,000
+and a browser via web sockets and Socket.IO without any page refreshes,
+
+59
+00:04:40,000 --> 00:04:44,000
+without reloading a page or long pulling or anything.
+
+60
+00:04:44,000 --> 00:04:49,000
+So now we're back in Cloud9 and here I have the same JavaScript file
+
+61
+00:04:49,000 --> 00:04:52,000
+as I had before on my Linux VM.
+
+62
+00:04:52,000 --> 00:04:56,000
+I've folded a little bit of the code here just so that it would all fit in one window,
+
+63
+00:04:56,000 --> 00:05:00,000
+but you can trust me that the code in here is the same as it was on our VM.
+
+64
+00:05:00,000 --> 00:05:03,000
+The only thing I've changed here is this code here.
+
+65
+00:05:03,000 --> 00:05:08,000
+So like I mentioned, Socket.IO will try to use web sockets,
+
+66
+00:05:08,000 --> 00:05:12,000
+and then if it doesn't it will begin to fall back to other transports.
+
+67
+00:05:12,000 --> 00:05:17,000
+So what I've done here is given it an explicit instruction that says, "You know what,
+
+68
+00:05:17,000 --> 00:05:21,000
+the only transport I want you to use here is the "xhr-polling."" So I'm going
+
+69
+00:05:21,000 --> 00:05:27,000
+to use this mechanism to maintain the connection between the client and the server
+
+70
+00:05:27,000 --> 00:05:30,000
+since I can't depend on web sockets.
+
+71
+00:05:30,000 --> 00:05:31,000
+These three lines are the only thing I've changed
+
+72
+00:05:31,000 --> 00:05:33,000
+and let's run it here and see what we get.
+
+73
+00:05:33,000 --> 00:05:44,000
+So you'll see here very similar output to what we had before and now we can just click on this.
+
+74
+00:05:44,000 --> 00:05:50,000
+( Typing )
+
+75
+00:05:50,000 --> 00:05:58,000
+And we'll see, we have our sample webpage and timer events continually updated.
+
+76
+00:05:58,000 --> 00:06:03,000
+And if we come back here and look,
+
+77
+00:06:03,000 --> 00:06:07,000
+we'll see that we're getting data continuously written to the output.
+
+78
+00:06:07,000 --> 00:06:12,000
+Now, let's come type something in here real quick.
+
+79
+00:06:12,000 --> 00:06:19,000
+(Typing) Now if jump back -- in fact, let's just go and stop the server --
+
+80
+00:06:19,000 --> 00:06:25,000
+and we look, and I may have to hunt for it but you'll see submitted this as a test.
+
+81
+00:06:25,000 --> 00:06:27,000
+So even if you know in your production environment,
+
+82
+00:06:27,000 --> 00:06:31,000
+you'll be able to support web sockets or you'll have a fallback strategy.
+
+83
+00:06:31,000 --> 00:59:00,000
+In Cloud9 you can just set this and it becomes much easier to do your development that way.
+

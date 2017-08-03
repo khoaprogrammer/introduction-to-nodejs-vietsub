@@ -1,0 +1,60 @@
+1
+00:00:00,000 --> 00:00:05,000
+In one of our last demos you may remember that we had to invoke a two string method
+
+2
+00:00:05,000 --> 00:00:10,000
+on the value returned when we read a file from the file system.
+
+3
+00:00:10,000 --> 00:00:14,000
+That's because the return value for this function was a buffer object.
+
+4
+00:00:14,000 --> 00:00:17,000
+So what's a buffer?
+
+5
+00:00:17,000 --> 00:00:20,000
+JavaScript has difficulty dealing with binary data,
+
+6
+00:00:20,000 --> 00:00:25,000
+but interacting with the network and file systems require it.
+
+7
+00:00:25,000 --> 00:00:28,000
+The buffer class provides a raw memory allocation
+
+8
+00:00:28,000 --> 00:00:32,000
+for dealing with binary data directly.
+
+9
+00:00:32,000 --> 00:00:36,000
+Buffers can be converted to and from strings by providing an encoding.
+
+10
+00:00:36,000 --> 00:00:40,000
+The default encoding is utf8.
+
+11
+00:00:40,000 --> 00:00:43,000
+When we called two string on our buffer returned
+
+12
+00:00:43,000 --> 00:00:49,000
+from reading a file we were using this default encoding to convert it to a string.
+
+13
+00:00:49,000 --> 00:00:52,000
+This support for multiple encodings makes buffers a handy way
+
+14
+00:00:52,000 --> 00:00:55,000
+to convert strings to and from base64.
+
+15
+00:00:55,000 --> 00:59:00,000
+Let's take a look at a couple of examples using buffers (silence).
+

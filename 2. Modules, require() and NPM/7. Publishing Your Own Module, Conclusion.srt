@@ -1,0 +1,132 @@
+1
+00:00:00,000 --> 00:00:05,000
+Publishing your own modules to the NPM registry is very easy
+
+2
+00:00:05,000 --> 00:00:08,000
+and is a great way to share your work with others.
+
+3
+00:00:08,000 --> 00:00:15,000
+It's as simple as adding one extra file to your Node project and a couple of extra NPM commands.
+
+4
+00:00:15,000 --> 00:00:20,000
+The file you need to add to your project root is package.json.
+
+5
+00:00:20,000 --> 00:00:26,000
+This file describes your modules to NPM and specifies how they should be installed
+
+6
+00:00:26,000 --> 00:00:28,000
+when downloaded from the registry.
+
+7
+00:00:28,000 --> 00:00:32,000
+It only has a couple of required fields; name and version.
+
+8
+00:00:32,000 --> 00:00:38,000
+NPM encourages the use of semantic versioning in your version numbers.
+
+9
+00:00:38,000 --> 00:00:42,000
+There are another set of optional fields that are primarily used
+
+10
+00:00:42,000 --> 00:00:46,000
+to describe your module on the NPM website.
+
+11
+00:00:46,000 --> 00:00:51,000
+These will help others find your module as well as your source code repository.
+
+12
+00:00:51,000 --> 00:00:58,000
+If your module has any dependencies, you should specify those here as well.
+
+13
+00:00:58,000 --> 00:01:04,000
+You'll notice that exact version numbers are not required, ranges are also supported.
+
+14
+00:01:04,000 --> 00:01:12,000
+When NPM installs your module it will also download and install its required dependencies.
+
+15
+00:01:12,000 --> 00:01:15,000
+Main is where you define the entry point into your module.
+
+16
+00:01:15,000 --> 00:01:21,000
+This is what is executed when someone requires your module.
+
+17
+00:01:21,000 --> 00:01:25,000
+Once you have this file ready you'll need to run NPM add user
+
+18
+00:01:25,000 --> 00:01:28,000
+to create an account on the NPM registry.
+
+19
+00:01:28,000 --> 00:01:32,000
+With that in place you simply run NPM publish dot
+
+20
+00:01:32,000 --> 00:01:38,000
+from your project's root directory to publish the module to NPM.
+
+21
+00:01:38,000 --> 00:01:44,000
+One additional step I recommend is to move to an empty directory, run NPM install on your module
+
+22
+00:01:44,000 --> 00:01:48,000
+and try to use it in a sample Node application.
+
+23
+00:01:48,000 --> 00:01:53,000
+I know from experience that it is easy to upload a broken module and not realize it because all
+
+24
+00:01:53,000 --> 00:01:59,000
+of the unit tests passed in the working directory before you publish it.
+
+25
+00:01:59,000 --> 00:02:05,000
+So, to conclude; in this module we discussed how to include Node modules
+
+26
+00:02:05,000 --> 00:02:08,000
+in your project using the require statement.
+
+27
+00:02:08,000 --> 00:02:12,000
+The three common sources of Node modules; the built-in modules,
+
+28
+00:02:12,000 --> 00:02:17,000
+your own applications JavaScript files and the NPM registry.
+
+29
+00:02:17,000 --> 00:02:21,000
+And we wrapped up with the brief discussion on how to define
+
+30
+00:02:21,000 --> 00:02:24,000
+and publish your own module to the NPM registry.
+
+31
+00:02:24,000 --> 00:02:27,000
+I hope this module has been a useful introduction
+
+32
+00:02:27,000 --> 00:02:31,000
+to the Node's modules, the require statement and NPM.
+
+33
+00:02:31,000 --> 00:59:00,000
+Thank you.
+

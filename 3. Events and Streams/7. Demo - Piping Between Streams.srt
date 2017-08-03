@@ -1,0 +1,360 @@
+1
+00:00:00,000 --> 00:00:05,000
+So now we're going to take a look at piping a ReadableStream to a WriteableStream.
+
+2
+00:00:05,000 --> 00:00:10,000
+And so we're basically going to combine the previous two examples together.
+
+3
+00:00:10,000 --> 00:00:16,000
+Here, in this case, we have our Request module that we've required
+
+4
+00:00:16,000 --> 00:00:19,000
+and stored in our Request to variable.
+
+5
+00:00:19,000 --> 00:00:23,000
+And similar to our ReadableStream example, we're going to call Request
+
+6
+00:00:23,000 --> 00:00:30,000
+on the Pluralsight Homepage, and store that stream that's returned in the Variable S.
+
+7
+00:00:30,000 --> 00:00:33,000
+But now, instead of listening for events on that ReadableStream,
+
+8
+00:00:33,000 --> 00:00:36,000
+we're going to simply call the pipe function, and we're going to pipe it
+
+9
+00:00:36,000 --> 00:00:40,000
+to our WriteableStream, which in this case, we're going to use the WriteableStream
+
+10
+00:00:40,000 --> 00:00:44,000
+from our second example, Process.StandardOut.
+
+11
+00:00:44,000 --> 00:00:51,000
+And so what this should do is take the html returned from the Request
+
+12
+00:00:51,000 --> 00:00:55,000
+and simply pipe it to the console.
+
+13
+00:00:55,000 --> 00:01:01,000
+So let's run this and see what we get.
+
+14
+00:01:01,000 --> 00:01:05,000
+Piping the Request to StandardOut simply dumps everything
+
+15
+00:01:05,000 --> 00:01:08,000
+that came back just straight to StandardOut.
+
+16
+00:01:08,000 --> 00:01:14,000
+Now, of course, you could also simply chain these together and call Request
+
+17
+00:01:14,000 --> 00:01:17,000
+and because Request is going to return to you a stream you could simply,
+
+18
+00:01:17,000 --> 00:01:23,000
+on the end of the Request, do .pipe and then pipe it to the WriteableStream.
+
+19
+00:01:23,000 --> 00:01:27,000
+This will, in essence, do the exact same thing as the code above it that's commented out.
+
+20
+00:01:27,000 --> 00:01:34,000
+But let's just run it to prove that to ourselves.
+
+21
+00:01:34,000 --> 00:01:37,000
+Yep, and so it does exactly the same thing.
+
+22
+00:01:37,000 --> 00:01:41,000
+Now here is an example that's a little bit different than before.
+
+23
+00:01:41,000 --> 00:01:46,000
+So now what we're going to do is take the same Request of the same Webpage.
+
+24
+00:01:46,000 --> 00:01:48,000
+But now, instead of piping it to the console,
+
+25
+00:01:48,000 --> 00:01:53,000
+what we're going to do is pipe it to a file on the file system.
+
+26
+00:01:53,000 --> 00:01:58,000
+And so to do this, we're using the FS module, which is another built-in Node module,
+
+27
+00:01:58,000 --> 00:02:05,000
+and we're bringing it in and storing it as the FS variable, and FS is for the File System.
+
+28
+00:02:05,000 --> 00:02:12,000
+And so here what we're doing is calling the CreateWriteStream function on the FS module
+
+29
+00:02:12,000 --> 00:02:19,000
+which says I want you to create me a writeable stream that will store the contents
+
+30
+00:02:19,000 --> 00:02:23,000
+in this file and return me that stream.
+
+31
+00:02:23,000 --> 00:02:27,000
+Because the CreateWriteStream function returns a stream,
+
+32
+00:02:27,000 --> 00:02:32,000
+we've simply put that function invocation as the parameter to the pipe function.
+
+33
+00:02:32,000 --> 00:02:38,000
+So here we're saying, okay, I want you to request this Website and I want you to pipe it
+
+34
+00:02:38,000 --> 00:02:45,000
+to the stream returned by the CreateWriteStream function which will create this file.
+
+35
+00:02:45,000 --> 00:02:50,000
+So when we're done, we should be able to run this one line of code, download this html
+
+36
+00:02:50,000 --> 00:02:52,000
+from their Homepage, and write it to a file.
+
+37
+00:02:52,000 --> 00:02:55,000
+Let's try that.
+
+38
+00:02:55,000 --> 00:03:01,000
+( Typing Sounds )
+
+39
+00:03:01,000 --> 00:03:07,000
+It ran and it's complete, so now let's do an LS and see what we have.
+
+40
+00:03:07,000 --> 00:03:10,000
+So we have our Pluralsight.html file.
+
+41
+00:03:10,000 --> 00:03:16,000
+In fact, if we (typing sounds) -- we can see that it does have a size to it,
+
+42
+00:03:16,000 --> 00:03:19,000
+and if we want to add to the console we can...
+
+43
+00:03:19,000 --> 00:03:24,000
+( Typing Sounds )
+
+44
+00:03:24,000 --> 00:03:30,000
+We can see that that file does indeed contain html from the Pluralsight Homepage.
+
+45
+00:03:30,000 --> 00:03:36,000
+So, in one line of code you can download a Webpage and write it to a file.
+
+46
+00:03:36,000 --> 00:03:43,000
+So what we're going to do for our last example is take our previous one one step further.
+
+47
+00:03:43,000 --> 00:03:46,000
+If you remember from our slides, we mentioned
+
+48
+00:03:46,000 --> 00:03:51,000
+that a stream can either be a ReadableStream, a WriteableStream, or both.
+
+49
+00:03:51,000 --> 00:03:57,000
+In this case we're going to show a stream that is both readable and writeable.
+
+50
+00:03:57,000 --> 00:04:03,000
+So what we've done is taken our Request, a Website -- or a Webpage --
+
+51
+00:04:03,000 --> 00:04:08,000
+and write it to a file, and we've injected into the middle of it the ability
+
+52
+00:04:08,000 --> 00:04:12,000
+to gzip the data on the way into the file.
+
+53
+00:04:12,000 --> 00:04:19,000
+And so what we have is Node has another built-in module called zlib, and so we've required that.
+
+54
+00:04:19,000 --> 00:04:24,000
+And what we have is our Request function which we never turned to stream,
+
+55
+00:04:24,000 --> 00:04:28,000
+and so on that stream we're calling pipe, and then what we're passing
+
+56
+00:04:28,000 --> 00:04:33,000
+to pipe is actually the results of zlib.creategzip.
+
+57
+00:04:33,000 --> 00:04:38,000
+So what create.gzip does is return a stream that's both readable and writeable
+
+58
+00:04:38,000 --> 00:04:45,000
+that will read in uncompressed content and output compressed content.
+
+59
+00:04:45,000 --> 00:04:47,000
+And so we call that function.
+
+60
+00:04:47,000 --> 00:04:49,000
+We'll get that stream back.
+
+61
+00:04:49,000 --> 00:04:51,000
+We pass that to pipe.
+
+62
+00:04:51,000 --> 00:04:59,000
+The pipe function, as its return value, will return the stream that you passed into pipe.
+
+63
+00:04:59,000 --> 00:05:04,000
+And the reason that it works that way is explicitly so you can chain these together.
+
+64
+00:05:04,000 --> 00:05:12,000
+So, when we pass in the stream that was returned from the create.gzip function into pipe,
+
+65
+00:05:12,000 --> 00:05:15,000
+the return value of this pipe function is actually the stream.
+
+66
+00:05:15,000 --> 00:05:19,000
+So on that stream, we can call pipe.
+
+67
+00:05:19,000 --> 00:05:24,000
+And pipe that output to our CreateWriteStream function call.
+
+68
+00:05:24,000 --> 00:05:29,000
+But in this case, we're going to name the file Pluralsight.html.gz
+
+69
+00:05:29,000 --> 00:05:32,000
+because in this case it's gzipped.
+
+70
+00:05:32,000 --> 00:05:36,000
+So, we'll execute our request, get the Data back,
+
+71
+00:05:36,000 --> 00:05:45,000
+pipe it through our gzip stream and then pipe it onto a file.
+
+72
+00:05:45,000 --> 00:05:47,000
+So, let's run this and see what we get.
+
+73
+00:05:47,000 --> 00:05:54,000
+( Typing Sounds )
+
+74
+00:05:54,000 --> 00:05:55,000
+Okay. So it's done.
+
+75
+00:05:55,000 --> 00:06:00,000
+Now let's do an LS (typing sounds) and see what we have.
+
+76
+00:06:00,000 --> 00:06:03,000
+Okay. So now we do have a Pluralsight.html.gz.
+
+77
+00:06:03,000 --> 00:06:08,000
+If you'll notice, it is a good bit smaller than the .html which would lead us
+
+78
+00:06:08,000 --> 00:06:12,000
+to assume that it is obviously compressed.
+
+79
+00:06:12,000 --> 00:06:14,000
+But now, let's actually look at the contents of that file and just to prove it to ourselves.
+
+80
+00:06:14,000 --> 00:06:16,000
+So if we use a zcat command...
+
+81
+00:06:16,000 --> 00:06:20,000
+( Typing Sounds )
+
+82
+00:06:20,000 --> 00:06:23,000
+...to print that out.
+
+83
+00:06:23,000 --> 00:06:24,000
+And there you go.
+
+84
+00:06:24,000 --> 00:06:26,000
+You'll see that it is the actual html.
+
+85
+00:06:26,000 --> 00:06:31,000
+You can get very, very creative with these chaining of the pipes together,
+
+86
+00:06:31,000 --> 00:06:36,000
+and it just shows how much you can do in a very small amount of code
+
+87
+00:06:36,000 --> 00:06:38,000
+with the benefit of this pipe command.
+
+88
+00:06:38,000 --> 00:06:43,000
+And if you remember from the slides of all the back and forth with the pause, and drain,
+
+89
+00:06:43,000 --> 00:06:47,000
+and resume, and all that -- I mean, all of that is in place here in-between each one
+
+90
+00:06:47,000 --> 00:59:00,000
+of these pipes to manage the flow of the data from one to the other.
+

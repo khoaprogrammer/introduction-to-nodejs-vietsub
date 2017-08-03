@@ -1,0 +1,184 @@
+1
+00:00:01,000 --> 00:00:05,000
+A Node application of any complexity will quickly outgrow the built
+
+2
+00:00:05,000 --> 00:00:10,000
+in test capabilities provided by the "assert" module.
+
+3
+00:00:10,000 --> 00:00:14,000
+There are many test frameworks that have sprouted up in the Node community.
+
+4
+00:00:14,000 --> 00:00:18,000
+A fairly popular test framework is Mocha.
+
+5
+00:00:18,000 --> 00:00:22,000
+It is also common to see it paired with should.js,
+
+6
+00:00:22,000 --> 00:00:28,000
+which provides a rich assertion syntax.
+
+7
+00:00:28,000 --> 00:00:35,000
+Mocha provides many useful features for writing tests for your Node application.
+
+8
+00:00:35,000 --> 00:00:40,000
+Even when testing asynchronous functions, it will run your tests, serially.
+
+9
+00:00:40,000 --> 00:00:50,000
+Like test frameworks for many other languages, the test cases are organized into test suites.
+
+10
+00:00:50,000 --> 00:00:55,000
+There are hooks to execute arbitrary code before and after each test suite,
+
+11
+00:00:55,000 --> 00:00:59,000
+as well as before and after each test.
+
+12
+00:00:59,000 --> 00:01:04,000
+It includes the support for pending, exclusive and inclusive tests.
+
+13
+00:01:04,000 --> 00:01:09,000
+A pending test is one that has been stubbed out, but not yet implemented.
+
+14
+00:01:09,000 --> 00:01:14,000
+Exclusive and inclusive tests are helpful ways to isolate certain tests without having
+
+15
+00:01:14,000 --> 00:01:20,000
+to comment out those tests, which you may forget to uncomment later.
+
+16
+00:01:20,000 --> 00:01:26,000
+It will time each one of your tests, and let you know which ones are running slow.
+
+17
+00:01:26,000 --> 00:01:30,000
+During your development cycle, it can be configured to watch your source directory,
+
+18
+00:01:30,000 --> 00:01:35,000
+and rerun the tests each time a file changes, for example, when you save a file
+
+19
+00:01:35,000 --> 00:01:37,000
+in your IEE or in your text editor.
+
+20
+00:01:37,000 --> 00:01:42,000
+It even supports multiple syntax options for writing your tests
+
+21
+00:01:42,000 --> 00:01:46,000
+and multiple options for rendering the test results.
+
+22
+00:01:46,000 --> 00:01:50,000
+Should.js extends Node's asserts module
+
+23
+00:01:50,000 --> 00:01:55,000
+with behavior driven development or BDD style assertions.
+
+24
+00:01:55,000 --> 00:01:59,000
+These can make your tests easier to construct and much more readable.
+
+25
+00:01:59,000 --> 00:02:03,000
+Here is an example from the should.js read me file.
+
+26
+00:02:03,000 --> 00:02:09,000
+You'll notice that we have a user object with two properties, name and pets.
+
+27
+00:02:09,000 --> 00:02:15,000
+Should.js actually extends the object prototype and adds a should function.
+
+28
+00:02:15,000 --> 00:02:19,000
+It also adds additional functions, which serve as syntactic sugar,
+
+29
+00:02:19,000 --> 00:02:21,000
+which make the test more readable.
+
+30
+00:02:21,000 --> 00:02:29,000
+Here we are saying that the variable user should have a property with the value tj.
+
+31
+00:02:29,000 --> 00:02:32,000
+Property is an enhanced assertion that understands how
+
+32
+00:02:32,000 --> 00:02:34,000
+to validate whether an object has a certain property.
+
+33
+00:02:34,000 --> 00:02:41,000
+You can also chain these assertions to make your tests more compact.
+
+34
+00:02:41,000 --> 00:02:45,000
+Here we're saying that the user should have a property of pets,
+
+35
+00:02:45,000 --> 00:02:48,000
+and that the length of that array should be four.
+
+36
+00:02:48,000 --> 00:02:50,000
+In this case, the test will not blow
+
+37
+00:02:50,000 --> 00:02:56,000
+up if the user object does not have a pets property, it will just fail.
+
+38
+00:02:56,000 --> 00:03:01,000
+Even though should is added as a function onto every object, you will still have the case
+
+39
+00:03:01,000 --> 00:03:04,000
+where you need to check the existence of an object.
+
+40
+00:03:04,000 --> 00:03:10,000
+In this scenario, you cannot simply append the should option to the end of an object name
+
+41
+00:03:10,000 --> 00:03:13,000
+because if the object is undefined, it will generate an error.
+
+42
+00:03:13,000 --> 00:03:17,000
+In this case, you can evoke the should function statically
+
+43
+00:03:17,000 --> 00:03:21,000
+and pass in the variable to be tested.
+
+44
+00:03:21,000 --> 00:03:25,000
+The should function is not only available on the top level function,
+
+45
+00:03:25,000 --> 00:03:27,000
+but on properties of objects as well.
+
+46
+00:03:27,000 --> 00:59:00,000
+Let's take a look of some examples of testing with Mocha and should.js.
+

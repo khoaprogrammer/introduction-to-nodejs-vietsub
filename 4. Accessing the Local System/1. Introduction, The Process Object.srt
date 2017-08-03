@@ -1,0 +1,108 @@
+1
+00:00:01,000 --> 00:00:05,000
+Paul O'Fallon: Hello, my name is Paul O'Fallon and I'd like to welcome you
+
+2
+00:00:05,000 --> 00:00:13,000
+to the course An Introduction to Node.js Module 4, Accessing the Local System.
+
+3
+00:00:13,000 --> 00:00:20,000
+In this module we'll examine the ways Node gives you to interact with your local environment.
+
+4
+00:00:20,000 --> 00:00:26,000
+This includes Node's "process" object, interacting with the file system,
+
+5
+00:00:26,000 --> 00:00:31,000
+which will lead us to a brief conversation on Node's buffer class
+
+6
+00:00:31,000 --> 00:00:34,000
+and then we'll wrap up with a look at the os module.
+
+7
+00:00:34,000 --> 00:00:38,000
+So, let's get started (silence).
+
+8
+00:00:38,000 --> 00:00:45,000
+The "process" object provides a way for your Node application to both manage its own process
+
+9
+00:00:45,000 --> 00:00:49,000
+as well as other processes on the system.
+
+10
+00:00:49,000 --> 00:00:55,000
+It's available by default in your Node application; it does not need to be required.
+
+11
+00:00:55,000 --> 00:01:01,000
+The "process" object contains a variety of variables and functions including a set
+
+12
+00:01:01,000 --> 00:01:06,000
+of streams for accessing standard in, out and error.
+
+13
+00:01:06,000 --> 00:01:12,000
+The first is a readable stream and the latter two are writable streams.
+
+14
+00:01:12,000 --> 00:01:17,000
+It also provides a series of attributes about the current process such as its set
+
+15
+00:01:17,000 --> 00:01:22,000
+of environment variables, command line arguments, process ID and title,
+
+16
+00:01:22,000 --> 00:01:28,000
+uptime and memory usage, current working directory and more.
+
+17
+00:01:28,000 --> 00:01:30,000
+It provides a set of functions.
+
+18
+00:01:30,000 --> 00:01:33,000
+Most of these such as abort, change directory,
+
+19
+00:01:33,000 --> 00:01:38,000
+set gid and uid act on the current running process.
+
+20
+00:01:38,000 --> 00:01:43,000
+The kill function however requires a process ID as a parameter and can be used
+
+21
+00:01:43,000 --> 00:01:46,000
+to terminate other processes on the system.
+
+22
+00:01:46,000 --> 00:01:52,000
+Finally, the "process" object is an instance of the event emitter class.
+
+23
+00:01:52,000 --> 00:01:57,000
+It emits an exit event when the process is about to exit.
+
+24
+00:01:57,000 --> 00:02:00,000
+It can also emit an uncaught exception event
+
+25
+00:02:00,000 --> 00:02:04,000
+if an exception bubbles all the way up to the event loop.
+
+26
+00:02:04,000 --> 00:02:09,000
+It also emits all of the standard POSIX signal events such as SIGNI etcetera.
+
+27
+00:02:09,000 --> 00:59:00,000
+Let's take a look at some examples of using Node's process module (silent).
+

@@ -1,0 +1,64 @@
+1
+00:00:00,000 --> 00:00:06,000
+We first saw the os module back during our discussion of using require
+
+2
+00:00:06,000 --> 00:00:10,000
+to include built-in modules in our Node applications.
+
+3
+00:00:10,000 --> 00:00:15,000
+The os module provides several functions for examining the operating system
+
+4
+00:00:15,000 --> 00:00:18,000
+on which your Node application is running.
+
+5
+00:00:18,000 --> 00:00:24,000
+These include the default temp directory, the host name, the type of os, the platform,
+
+6
+00:00:24,000 --> 00:00:27,000
+architecture and release information.
+
+7
+00:00:27,000 --> 00:00:33,000
+They also include the uptime of the system, the load average, total and free memory,
+
+8
+00:00:33,000 --> 00:00:37,000
+the number of CPU's, as well as a list of networking interfaces.
+
+9
+00:00:37,000 --> 00:00:42,000
+Finally, the EOL variable contains the appropriate end
+
+10
+00:00:42,000 --> 00:00:46,000
+of line marker for the operating system.
+
+11
+00:00:46,000 --> 00:00:52,000
+So, to conclude; in this module we've looked at several ways Node allows you to interact
+
+12
+00:00:52,000 --> 00:00:57,000
+with your local environment including Node's "process" object,
+
+13
+00:00:57,000 --> 00:01:01,000
+the fs module for the file system,
+
+14
+00:01:01,000 --> 00:01:07,000
+a short diversion to discuss buffers and a recap of the os module.
+
+15
+00:01:07,000 --> 00:01:12,000
+I hope this has been a helpful look into the local system features provided by Node.js.
+
+16
+00:01:12,000 --> 00:59:00,000
+Thank you.
+

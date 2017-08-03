@@ -1,0 +1,160 @@
+1
+00:00:00,000 --> 00:00:07,000
+So now we're going to take a look at using the Node Package Manager or NPM registry to search
+
+2
+00:00:07,000 --> 00:00:12,000
+for and install third party modules for use within our Node applications.
+
+3
+00:00:12,000 --> 00:00:19,000
+So a great place to look for modules that might be of interest to you is the NPMJS.org website
+
+4
+00:00:19,000 --> 00:00:27,000
+where you can see statistics about the module ecosystem in general and also some stats
+
+5
+00:00:27,000 --> 00:00:29,000
+about some particular modules, the most depended upon modules
+
+6
+00:00:29,000 --> 00:00:32,000
+which arguably would be the most popular modules.
+
+7
+00:00:32,000 --> 00:00:35,000
+They're the ones that other modules depend on the most and ones
+
+8
+00:00:35,000 --> 00:00:38,000
+that are most recently updated etcetera.
+
+9
+00:00:38,000 --> 00:00:42,000
+Now the module that we're interested in this time is the request module,
+
+10
+00:00:42,000 --> 00:00:45,000
+which is the second most depended upon module.
+
+11
+00:00:45,000 --> 00:00:51,000
+And when looking at any particular module you'll be able to go to a webpage,
+
+12
+00:00:51,000 --> 00:00:54,000
+see some download statistics and just some general information
+
+13
+00:00:54,000 --> 00:00:57,000
+about the module including their read me file.
+
+14
+00:00:57,000 --> 00:01:01,000
+And so we've decided we would like to install the request module,
+
+15
+00:01:01,000 --> 00:01:05,000
+which is a simplified http request client.
+
+16
+00:01:05,000 --> 00:01:13,000
+So let's go back to our project and here now we have a very simple script which uses require
+
+17
+00:01:13,000 --> 00:01:17,000
+to load the request module and assign it to the variable request.
+
+18
+00:01:17,000 --> 00:01:20,000
+We won't go into a whole lot of detail about what it does.
+
+19
+00:01:20,000 --> 00:01:24,000
+I do suggest you look into it further; it really is a great module.
+
+20
+00:01:24,000 --> 00:01:26,000
+It's also very simple to use and simple to explain.
+
+21
+00:01:26,000 --> 00:01:33,000
+So, if you invoke the request function and the first parameter you pass in the URL
+
+22
+00:01:33,000 --> 00:01:37,000
+that you would like to receive, then the second parameter is a callback.
+
+23
+00:01:37,000 --> 00:01:41,000
+The callback takes three parameters; of course it follows the Node convention
+
+24
+00:01:41,000 --> 00:01:44,000
+of taking the error parameter as the first parameter to the callback
+
+25
+00:01:44,000 --> 00:01:52,000
+and then it has two other parameters in the callback; the response object and the body,
+
+26
+00:01:52,000 --> 00:01:54,000
+which is the text of the response.
+
+27
+00:01:54,000 --> 00:01:57,000
+So now if we were to run it right now we would get an error
+
+28
+00:01:57,000 --> 00:01:59,000
+because we haven't actually downloaded
+
+29
+00:01:59,000 --> 00:02:03,000
+and installed the request module from the NPM registry.
+
+30
+00:02:03,000 --> 00:02:08,000
+So, we need to get it and download and install it locally and the way that we'll do that is
+
+31
+00:02:08,000 --> 00:02:11,000
+with the NPM command from the command line.
+
+32
+00:02:11,000 --> 00:02:14,000
+First we need to be sure that we're in the right directory
+
+33
+00:02:14,000 --> 00:02:17,000
+where the script file is that we want to run.
+
+34
+00:02:17,000 --> 00:02:28,000
+And so, we need to go down into (typing) - and so now we can run the NPM install command
+
+35
+00:02:28,000 --> 00:02:33,000
+and we want to install request (silence).
+
+36
+00:02:33,000 --> 00:02:38,000
+Okay, and so now that the module's been installed we should be good to go and we can try
+
+37
+00:02:38,000 --> 00:02:46,000
+to run our script and see what we get (silence).
+
+38
+00:02:46,000 --> 00:02:56,000
+And so what we have is the html and JavaScript that is the Pluralsight homepage,
+
+39
+00:02:56,000 --> 00:03:01,000
+but we did that by using the request function which came as a part of the request module.
+
+40
+00:03:01,000 --> 00:59:00,000
+This was a third party module that we downloaded from the NPM registry.
+

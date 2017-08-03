@@ -1,0 +1,128 @@
+1
+00:00:00,000 --> 00:00:01,000
+Paul O'Fallon: Hello.
+
+2
+00:00:01,000 --> 00:00:05,000
+My name is Paul O'Fallon, and I'd like to welcome you to the course,
+
+3
+00:00:05,000 --> 00:00:13,000
+"An Introduction to Node.js, Module 5 -- Interacting with the Web."
+
+4
+00:00:13,000 --> 00:00:20,000
+In this module, we'll learn how to use Node as a web client, a web server,
+
+5
+00:00:20,000 --> 00:00:26,000
+and how to extend that to include real time integration using Socket.IO.
+
+6
+00:00:26,000 --> 00:00:29,000
+So let's get started.
+
+7
+00:00:29,000 --> 00:00:34,000
+First, we'll look at using Node to make requests of other websites.
+
+8
+00:00:34,000 --> 00:00:40,000
+In a couple of our earlier videos, we used the third-party request module
+
+9
+00:00:40,000 --> 00:00:44,000
+to fetch the HTML of the Pluralsight homepage.
+
+10
+00:00:44,000 --> 00:00:49,000
+Here, we're going to look at doing the same thing using the HTTP module
+
+11
+00:00:49,000 --> 00:00:51,000
+that is included with Node.
+
+12
+00:00:51,000 --> 00:00:57,000
+It can be included in your application by requiring HTTP.
+
+13
+00:00:57,000 --> 00:01:03,000
+The request function provided by the HTTP module takes two parameters --
+
+14
+00:01:03,000 --> 00:01:06,000
+an options parameter and a callback.
+
+15
+00:01:06,000 --> 00:01:10,000
+This options parameter can be either a simple URL string,
+
+16
+00:01:10,000 --> 00:01:16,000
+or a more complex object specifying many options about the request being made.
+
+17
+00:01:16,000 --> 00:01:22,000
+The request function returns a value, which is an instance of client request.
+
+18
+00:01:22,000 --> 00:01:29,000
+This is a writable stream and can be written or piped to for HTTP post uploads.
+
+19
+00:01:29,000 --> 00:01:36,000
+In addition to returning a value, the request function also takes a callback parameter.
+
+20
+00:01:36,000 --> 00:01:42,000
+This callback, when invoked, is passed a single parameter, and instance of client response
+
+21
+00:01:42,000 --> 00:01:46,000
+which represents the results of the HTTP request.
+
+22
+00:01:46,000 --> 00:01:53,000
+This client response is a readable stream which can be read from or piped to a writable stream.
+
+23
+00:01:53,000 --> 00:01:58,000
+Note that this callback is an example of where Node does not follow its own conventions,
+
+24
+00:01:58,000 --> 00:02:03,000
+since the first parameter to the callback is not an error indicator.
+
+25
+00:02:03,000 --> 00:02:06,000
+If you don't pass a callback to the request function,
+
+26
+00:02:06,000 --> 00:02:09,000
+you can still retrieve the client response object.
+
+27
+00:02:09,000 --> 00:02:13,000
+It is also provided by a response event emitted
+
+28
+00:02:13,000 --> 00:02:18,000
+by the client request returned from the function call.
+
+29
+00:02:18,000 --> 00:02:21,000
+If all you're doing is making a simple get request however,
+
+30
+00:02:21,000 --> 00:02:25,000
+Node provides a simplified interface in HTTP.git.
+
+31
+00:02:25,000 --> 00:02:29,000
+Let's take a look at some examples
+
+32
+00:02:29,000 --> 00:59:00,000
+of using Node's built-in HTTP module for making client requests.
+

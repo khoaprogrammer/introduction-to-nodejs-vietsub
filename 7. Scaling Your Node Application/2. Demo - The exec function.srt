@@ -1,0 +1,136 @@
+1
+00:00:00,000 --> 00:00:07,000
+For our first child process example, we're going to take a look at the exec function.
+
+2
+00:00:07,000 --> 00:00:12,000
+And so here you can see that we've required the child process module
+
+3
+00:00:12,000 --> 00:00:15,000
+and in more specifically the exec function directly.
+
+4
+00:00:15,000 --> 00:00:21,000
+And so, what we're going to do is run the uptime Unix function and in the callback,
+
+5
+00:00:21,000 --> 00:00:24,000
+if we get an error, we will log that to the console,
+
+6
+00:00:24,000 --> 00:00:28,000
+otherwise we will log the output to the console.
+
+7
+00:00:28,000 --> 00:00:32,000
+And so what this will be is the output of the command once the command has completed.
+
+8
+00:00:32,000 --> 00:00:38,000
+And down here, we're going to log to the console the process ID of the child process.
+
+9
+00:00:38,000 --> 00:00:43,000
+So starting with just a simple uptime command, let's run this.
+
+10
+00:00:43,000 --> 00:00:47,000
+Before we get any results from the child process,
+
+11
+00:00:47,000 --> 00:00:52,000
+we are logging to the console the process ID and you can see that here.
+
+12
+00:00:52,000 --> 00:00:58,000
+And then we get the output of the uptime command printed to the console
+
+13
+00:00:58,000 --> 00:01:00,000
+where the output is and then the results.
+
+14
+00:01:00,000 --> 00:01:04,000
+But this can be more than just a simple Unix command,
+
+15
+00:01:04,000 --> 00:01:07,000
+it could be any arbitrary Unix statement.
+
+16
+00:01:07,000 --> 00:01:13,000
+So for instance, if we were to pipe the uptime command to the cut command
+
+17
+00:01:13,000 --> 00:01:18,000
+and slice just a little bit of that output to display, you could do that here
+
+18
+00:01:18,000 --> 00:01:20,000
+and then everything else would work the same.
+
+19
+00:01:20,000 --> 00:01:25,000
+So let's run this.
+
+20
+00:01:25,000 --> 00:01:28,000
+And if you want to compare that to the last output,
+
+21
+00:01:28,000 --> 00:01:30,000
+you can see here where in our earlier output,
+
+22
+00:01:30,000 --> 00:01:34,000
+we received the entire output of the uptime command.
+
+23
+00:01:34,000 --> 00:01:39,000
+But because the actual command we sent to the child process was uptime and then pipe
+
+24
+00:01:39,000 --> 00:01:43,000
+that to cut, we only got a little bit of the output the next time.
+
+25
+00:01:43,000 --> 00:01:48,000
+Now let's change the commands being run to force it to generate an error
+
+26
+00:01:48,000 --> 00:01:50,000
+so we can see what that looks like.
+
+27
+00:01:50,000 --> 00:01:58,000
+So, if I change the name of this cut command to be 23cut which doesn't exist, we'll run that
+
+28
+00:01:58,000 --> 00:02:02,000
+and see what the error looks like.
+
+29
+00:02:02,000 --> 00:02:07,000
+So here you can see we output the process ID again but in this case,
+
+30
+00:02:07,000 --> 00:02:08,000
+because we detected an error,
+
+31
+00:02:08,000 --> 00:02:12,000
+instead of printing standard out, we printed standard error.
+
+32
+00:02:12,000 --> 00:02:16,000
+And what standard error told us is that 23cut is a command
+
+33
+00:02:16,000 --> 00:02:19,000
+that our shell does not know anything about.
+
+34
+00:02:19,000 --> 00:59:00,000
+So this is an example of using exec to execute an arbitrary command on your system.
+

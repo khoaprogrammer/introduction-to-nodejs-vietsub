@@ -1,0 +1,204 @@
+1
+00:00:00,000 --> 00:00:06,000
+Hello, my name is Paul O'Fallon and I'd like to welcome you to the course An Introduction
+
+2
+00:00:06,000 --> 00:00:12,000
+to Node.js, module 7, Scaling Your Node Application.
+
+3
+00:00:12,000 --> 00:00:19,000
+In this module, we'll cover how to create child processes in your Node application.
+
+4
+00:00:19,000 --> 00:00:23,000
+And then, we'll look at Node's experimental "cluster" module
+
+5
+00:00:23,000 --> 00:00:27,000
+for scaling your application across multiple processes.
+
+6
+00:00:27,000 --> 00:00:30,000
+So, let's get started.
+
+7
+00:00:30,000 --> 00:00:34,000
+One common criticism of Node applications is
+
+8
+00:00:34,000 --> 00:00:39,000
+that they do not handle CPU intensive tests well.
+
+9
+00:00:39,000 --> 00:00:42,000
+This is because spending too much CPU time on any one task
+
+10
+00:00:42,000 --> 00:00:48,000
+in your Node app will block the event loop and prevent other work from being done.
+
+11
+00:00:48,000 --> 00:00:53,000
+One strategy for dealing with this issue is the use of "child processes".
+
+12
+00:00:53,000 --> 00:00:57,000
+A CPU intensive task, resizing an image for example,
+
+13
+00:00:57,000 --> 00:01:02,000
+can be deferred to a child process while the main Node application continues
+
+14
+00:01:02,000 --> 00:01:04,000
+to process events.
+
+15
+00:01:04,000 --> 00:01:12,000
+Node has four ways to launch child processes and all are a part of the child process module.
+
+16
+00:01:12,000 --> 00:01:16,000
+The first is the spawn function which will launch a new process
+
+17
+00:01:16,000 --> 00:01:20,000
+and run the command specified in the first parameter.
+
+18
+00:01:20,000 --> 00:01:25,000
+An optional array of arguments will be passed to the command.
+
+19
+00:01:25,000 --> 00:01:31,000
+This function returns an instance of a ChildProcess object which is an EventEmitter.
+
+20
+00:01:31,000 --> 00:01:38,000
+It emits exit and close events which can be listened for by the parent Node application.
+
+21
+00:01:38,000 --> 00:01:43,000
+The child process return value also has streams for the standard in,
+
+22
+00:01:43,000 --> 00:01:46,000
+out, and error of the child process.
+
+23
+00:01:46,000 --> 00:01:52,000
+The parent or spawning process can pipe data to and from these streams much
+
+24
+00:01:52,000 --> 00:01:57,000
+like you would the similar streams provided by the process object.
+
+25
+00:01:57,000 --> 00:02:03,000
+The second way to launch a child process in Node is with the exec function.
+
+26
+00:02:03,000 --> 00:02:07,000
+This function runs the provided command in a shell.
+
+27
+00:02:07,000 --> 00:02:10,000
+Any command line arguments you wish to provide must be included
+
+28
+00:02:10,000 --> 00:02:14,000
+in the string past as the command to execute.
+
+29
+00:02:14,000 --> 00:02:20,000
+You can even pipe between Unix commands within a single invocation of exec. For example,
+
+30
+00:02:20,000 --> 00:02:24,000
+piping the output of LS to the Unix grep command.
+
+31
+00:02:24,000 --> 00:02:29,000
+A third method is the execFile function.
+
+32
+00:02:29,000 --> 00:02:34,000
+This is similar to exec but instead of launching a process and executing the command,
+
+33
+00:02:34,000 --> 00:02:39,000
+the file parameter is executed directly.
+
+34
+00:02:39,000 --> 00:02:44,000
+One final method for invoking a child process in Node is particularly optimized
+
+35
+00:02:44,000 --> 00:02:49,000
+for spawning new child Node processes.
+
+36
+00:02:49,000 --> 00:02:51,000
+This is done with the fork function.
+
+37
+00:02:51,000 --> 00:02:58,000
+It is a specialized version of the spawn function especially for creating Node processes.
+
+38
+00:02:58,000 --> 00:03:02,000
+Like spawn, it returns an instance of the ChildProcess object.
+
+39
+00:03:02,000 --> 00:03:07,000
+However, in this case, it adds an additional send function and message event
+
+40
+00:03:07,000 --> 00:03:11,000
+to facilitate message passing between the parent and child processes.
+
+41
+00:03:11,000 --> 00:03:19,000
+Let's take a look at some sample code from the Node.js website that uses the fork function.
+
+42
+00:03:19,000 --> 00:03:24,000
+Here we have a parent.js script which requires the child process module.
+
+43
+00:03:24,000 --> 00:03:31,000
+It then calls the fork function to invoke Node again to run the child.js script.
+
+44
+00:03:31,000 --> 00:03:32,000
+It listens for the message event
+
+45
+00:03:32,000 --> 00:03:38,000
+from the returned ChildProcess object logging the message to the console.
+
+46
+00:03:38,000 --> 00:03:44,000
+It then attempts to send a message to the newly forked Node process.
+
+47
+00:03:44,000 --> 00:03:49,000
+When the separate Node process runs child.js, it listens for the message event
+
+48
+00:03:49,000 --> 00:03:52,000
+and logs the message to the console.
+
+49
+00:03:52,000 --> 00:03:56,000
+It too attempts to send a message back to its parent.
+
+50
+00:03:56,000 --> 00:04:02,000
+Each process sends its message which is picked up by the other and logged to the console.
+
+51
+00:04:02,000 --> 00:59:00,000
+Let's take a look at some examples of launching child processes in Node.js.
+

@@ -1,0 +1,264 @@
+1
+00:00:00,000 --> 00:00:04,000
+Writing code that operates in this non-blocking,
+
+2
+00:00:04,000 --> 00:00:09,000
+asynchronous environment requires a different way of thinking.
+
+3
+00:00:09,000 --> 00:00:12,000
+Here is a typical approach to querying a data base,
+
+4
+00:00:12,000 --> 00:00:16,000
+shown using some JavaScript-looking pseudo code.
+
+5
+00:00:16,000 --> 00:00:21,000
+Each function returns a value before the next function is called.
+
+6
+00:00:21,000 --> 00:00:24,000
+Each statement builds on the results of the prior one.
+
+7
+00:00:24,000 --> 00:00:26,000
+First, we connect to a data base.
+
+8
+00:00:26,000 --> 00:00:29,000
+Then we use that connection to create a statement.
+
+9
+00:00:29,000 --> 00:00:34,000
+From that statement, we execute a query and get back a set of results.
+
+10
+00:00:34,000 --> 00:00:37,000
+Finally, we iterate over those results.
+
+11
+00:00:37,000 --> 00:00:45,000
+"Node.js" code that accomplishes this task would look quite different in this case
+
+12
+00:00:45,000 --> 00:00:48,000
+because each function returns almost immediately,
+
+13
+00:00:48,000 --> 00:00:51,000
+before the actual work has been done.
+
+14
+00:00:51,000 --> 00:00:55,000
+We have to find other ways to convey the ordering of our statements.
+
+15
+00:00:55,000 --> 00:01:02,000
+If you look at the "Get DB" connection function, you'll see in this case it takes two parameters.
+
+16
+00:01:02,000 --> 00:01:08,000
+The first is the same connection string as before, but the second parameter is a function.
+
+17
+00:01:08,000 --> 00:01:13,000
+What we're saying, in effect, is, "Get a connection to the data base,
+
+18
+00:01:13,000 --> 00:01:19,000
+and once you have it, call this function and pass it the connection you just created."
+
+19
+00:01:19,000 --> 00:01:24,000
+By crafting the statement this way, we've left "Node" free to do other work while it's waiting
+
+20
+00:01:24,000 --> 00:01:27,000
+for the data base connection to be established.
+
+21
+00:01:27,000 --> 00:01:30,000
+The "Create Statement" function is written similarly,
+
+22
+00:01:30,000 --> 00:01:33,000
+except in this case the only parameter is the function
+
+23
+00:01:33,000 --> 00:01:37,000
+to call once the statement has been created.
+
+24
+00:01:37,000 --> 00:01:41,000
+These two functions are examples of using call-backs
+
+25
+00:01:41,000 --> 00:01:44,000
+to write code that will run asynchronously.
+
+26
+00:01:44,000 --> 00:01:49,000
+However, lest you think functions with return values have disappeared altogether,
+
+27
+00:01:49,000 --> 00:01:54,000
+you'll notice that the "Execute Query" function does indeed return a value.
+
+28
+00:01:54,000 --> 00:01:57,000
+In this case, the results object returned
+
+29
+00:01:57,000 --> 00:02:02,000
+from the function does not immediately contain the results of the data base query.
+
+30
+00:02:02,000 --> 00:02:08,000
+It is a special object called an "Event Emitter", which is capable of emitting events
+
+31
+00:02:08,000 --> 00:02:12,000
+in the future, when each row of the query result becomes available.
+
+32
+00:02:12,000 --> 00:02:15,000
+Here we're telling "Node" to invoke a function
+
+33
+00:02:15,000 --> 00:02:19,000
+when each row event is omitted by the results object.
+
+34
+00:02:19,000 --> 00:02:25,000
+We'll learn more about event emitters in a later module.
+
+35
+00:02:25,000 --> 00:02:29,000
+"Node" has adopted some conventions around its use of call-backs,
+
+36
+00:02:29,000 --> 00:02:32,000
+and it's important to cover those briefly here.
+
+37
+00:02:32,000 --> 00:02:37,000
+They'll help set the stage for many of the examples we'll cover in upcoming modules.
+
+38
+00:02:37,000 --> 00:02:40,000
+Let's start with a function called "Git-Stuff".
+
+39
+00:02:40,000 --> 00:02:42,000
+It takes two parameters.
+
+40
+00:02:42,000 --> 00:02:47,000
+The first one is a regular input parameter, and the second is the call-back function
+
+41
+00:02:47,000 --> 00:02:52,000
+to invoke once the "Git-Stuff" function has completed.
+
+42
+00:02:52,000 --> 00:02:57,000
+A "Node" convention is that the call-back parameter is always the last parameter passed
+
+43
+00:02:57,000 --> 00:02:59,000
+to the asynchronous function.
+
+44
+00:02:59,000 --> 00:03:05,000
+Here that call-back is a named function called "Handle Results".
+
+45
+00:03:05,000 --> 00:03:09,000
+Another convention around the use of call-backs is error handling.
+
+46
+00:03:09,000 --> 00:03:16,000
+The first value passed to the call-back should always be an error parameter.
+
+47
+00:03:16,000 --> 00:03:21,000
+While "Node" does support JavaScript's "try catch" syntax, it's much more common
+
+48
+00:03:21,000 --> 00:03:27,000
+to report an error by passing a value as the first parameter to the call-back.
+
+49
+00:03:27,000 --> 00:03:32,000
+Additionally, it's very convenient to verify whether a function succeeded by checking
+
+50
+00:03:32,000 --> 00:03:38,000
+for an undefined or "False-E" error value at the top of your call-back function.
+
+51
+00:03:38,000 --> 00:03:43,000
+In this example, we used a named variable, "Handle Results", to define the function
+
+52
+00:03:43,000 --> 00:03:47,000
+that was later passed as a call-back to "Git-Stuff".
+
+53
+00:03:47,000 --> 00:03:52,000
+This is certainly viable; however, strictly abiding by this approach will leave you
+
+54
+00:03:52,000 --> 00:03:57,000
+with many, many functions that are only used once in your code.
+
+55
+00:03:57,000 --> 00:04:01,000
+For simple call-backs, or those that are only referenced once,
+
+56
+00:04:01,000 --> 00:04:06,000
+it is very common to use anonymous functions as call-backs.
+
+57
+00:04:06,000 --> 00:04:09,000
+In this case, the anonymous function is defined
+
+58
+00:04:09,000 --> 00:04:12,000
+within the parameter list of the calling function.
+
+59
+00:04:12,000 --> 00:04:16,000
+Here's an example of the previous "Handle Results" function being added to the
+
+60
+00:04:16,000 --> 00:04:21,000
+"Git-Stuff" parameter list as an anonymous function.
+
+61
+00:04:21,000 --> 00:04:25,000
+Another benefit I've found when using anonymous functions is that they benefit
+
+62
+00:04:25,000 --> 00:04:28,000
+from JavaScript's support of closures.
+
+63
+00:04:28,000 --> 00:04:33,000
+As you cascade down a series of functions and call-backs, you continue to have
+
+64
+00:04:33,000 --> 00:04:37,000
+at your disposal all the variables created along the way.
+
+65
+00:04:37,000 --> 00:04:40,000
+Let's take a look at some simple examples of writing asynchronous
+
+66
+00:04:40,000 --> 00:59:00,000
+"JavaScript" in "Node.js" using call-backs.
+

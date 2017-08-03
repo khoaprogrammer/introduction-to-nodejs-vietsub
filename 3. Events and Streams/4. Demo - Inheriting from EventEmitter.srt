@@ -1,0 +1,180 @@
+1
+00:00:00,000 --> 00:00:05,000
+In this second example, we're going to take a look at the second pattern we discussed earlier
+
+2
+00:00:05,000 --> 00:00:10,000
+where we have an object that extends the EventEmitter class.
+
+3
+00:00:10,000 --> 00:00:15,000
+So what we've done is we've taken our original example and basically cut it in half,
+
+4
+00:00:15,000 --> 00:00:19,000
+and we've taken the code that emits the events and separated it
+
+5
+00:00:19,000 --> 00:00:22,000
+out into a separate JavaScript file.
+
+6
+00:00:22,000 --> 00:00:25,000
+So let's start by taking a look at that file.
+
+7
+00:00:25,000 --> 00:00:31,000
+So here you'll see we have a function called Resource which takes a number,
+
+8
+00:00:31,000 --> 00:00:33,000
+and I've hidden the contents of the function for now.
+
+9
+00:00:33,000 --> 00:00:35,000
+We'll get to that in just a minute.
+
+10
+00:00:35,000 --> 00:00:38,000
+But what this function basically does --
+
+11
+00:00:38,000 --> 00:00:44,000
+this is ourObject, and ourObject extends or inherits from EventEmitter.
+
+12
+00:00:44,000 --> 00:00:49,000
+So in order to do that, we're using Node's util module which we've required here.
+
+13
+00:00:49,000 --> 00:00:53,000
+It's a built-in module and it has an Inherits function.
+
+14
+00:00:53,000 --> 00:01:00,000
+And what we've said is, we want our resource object to inherit from the EventEmitter object,
+
+15
+00:01:00,000 --> 00:01:07,000
+which gives us access to the On function and the Emit function, and also, because we want scripts
+
+16
+00:01:07,000 --> 00:01:13,000
+that included this file as a module, to have access to our resource object.
+
+17
+00:01:13,000 --> 00:01:17,000
+We set module.exports equal to resource.
+
+18
+00:01:17,000 --> 00:01:22,000
+Now if we look down inside the code for the Resource function,
+
+19
+00:01:22,000 --> 00:01:29,000
+you'll see that it's almost identical to what we saw in our getResource function.
+
+20
+00:01:29,000 --> 00:01:30,000
+process.netTick is here.
+
+21
+00:01:30,000 --> 00:01:33,000
+The Events are emitted here.
+
+22
+00:01:33,000 --> 00:01:37,000
+The only difference is that because in our previous example,
+
+23
+00:01:37,000 --> 00:01:42,000
+we were instantiating an EventEmitter and using that instantiated variable
+
+24
+00:01:42,000 --> 00:01:45,000
+to call the Emit function, in this case
+
+25
+00:01:45,000 --> 00:01:49,000
+because our Resource function inherits from EventEmitter.
+
+26
+00:01:49,000 --> 00:01:55,000
+It is our Resource function that's doing the emitting of the events and so we need to use the
+
+27
+00:01:55,000 --> 00:02:01,000
+"This" variable to access the current resource that needs to do the emitting.
+
+28
+00:02:01,000 --> 00:02:03,000
+This is all packaged up in a Resource.js.
+
+29
+00:02:03,000 --> 00:02:11,000
+So now let's take a look at the JavaScript code that is using this.
+
+30
+00:02:11,000 --> 00:02:16,000
+In our main script file we have a Require statement and here,
+
+31
+00:02:16,000 --> 00:02:21,000
+because we're requiring another JavaScript file in our project, we have the dot slash
+
+32
+00:02:21,000 --> 00:02:23,000
+and then the name of the file which is Resource.js,
+
+33
+00:02:23,000 --> 00:02:28,000
+and we're storing it in a Resource variable.
+
+34
+00:02:28,000 --> 00:02:33,000
+So in this example, instead of simply calling a function and getting an instance
+
+35
+00:02:33,000 --> 00:02:40,000
+of an EventEmitter back, we're instantiating our Resource object and getting
+
+36
+00:02:40,000 --> 00:02:43,000
+that back here and the variable Are.
+
+37
+00:02:43,000 --> 00:02:47,000
+But once we do that, we're subscribing to the same events we did before.
+
+38
+00:02:47,000 --> 00:02:50,000
+So let's run this and see if we get what we expect.
+
+39
+00:02:50,000 --> 00:02:55,000
+( Typing Sounds)
+
+40
+00:02:55,000 --> 00:02:59,000
+And, yes, as you would expect, we're getting the -- I've started, the Start event,
+
+41
+00:02:59,000 --> 00:03:04,000
+and then seven data events because we passed in a seven, and then the End event.
+
+42
+00:03:04,000 --> 00:03:09,000
+So the net effect, at least in the console, is the same.
+
+43
+00:03:09,000 --> 00:03:12,000
+But these are the two types of patterns that you'll see from time to time.
+
+44
+00:03:12,000 --> 00:03:16,000
+You may have an actual object that you instantiate that emits Events,
+
+45
+00:03:16,000 --> 00:59:00,000
+or you may have a case where you call a function and get an EventEmitter back.
+

@@ -1,0 +1,44 @@
+1
+00:00:00,000 --> 00:00:06,000
+To build a web application of any significance in Node.js, you'll likely want
+
+2
+00:00:06,000 --> 00:00:09,000
+to leverage a web framework that runs on top of Node.
+
+3
+00:00:09,000 --> 00:00:13,000
+One very popular framework is ExpressJS.
+
+4
+00:00:13,000 --> 00:00:17,000
+I encourage you to check out the Pluralsight course on ExpressJS if you want
+
+5
+00:00:17,000 --> 00:00:22,000
+to learn more about building web apps in Node.
+
+6
+00:00:22,000 --> 00:00:29,000
+So in this module, we've covered using HTTP requests as a web client,
+
+7
+00:00:29,000 --> 00:00:35,000
+using HTTP create server to build a web server, and extending that model
+
+8
+00:00:35,000 --> 00:00:39,000
+to include Socket.IO for real-time communication.
+
+9
+00:00:39,000 --> 00:00:43,000
+I hope this module has been helpful in introducing you to the benefits
+
+10
+00:00:43,000 --> 00:00:46,000
+of using Node to interact with the web.
+
+11
+00:00:46,000 --> 00:59:00,000
+Thank you.
+
